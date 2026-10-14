@@ -832,44 +832,249 @@
         </div>
         <p class="sec-head__desc reveal-up">말로 맡기면 AI 동료가 직접 열고, 읽고, 처리해요. 중요한 단계는 언제나 먼저 물어봐요.</p>
       </div>
-      <ul class="b-wrap cpb">
-        <li class="cpb__item cpb--web reveal-up">
-          <span class="cpb__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="3.5" y="5.5" width="25" height="21" rx="4"/><path d="M3.5 11h25"/><circle class="f" cx="7.4" cy="8.25" r="1"/><circle class="f" cx="10.6" cy="8.25" r="1"/><path class="ic-link" d="M8 16.5h9"/><path d="M8 21h5.5"/><path class="ic-cursor" d="M15.5 17l7 2.6-3 1.2-1.2 3z"/></svg></span>
-          <span class="cpb__en">Browser use</span>
-          <h3>브라우저 작업</h3>
-          <p>웹을 검색하고, 페이지를 열어 읽고, 링크를 따라가 필요한 파일까지 받아 와요.</p>
-        </li>
-        <li class="cpb__item cpb--pc reveal-up">
-          <span class="cpb__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="3.5" y="5" width="25" height="17.5" rx="3"/><path d="M16 22.5V27M11.5 27h9"/><rect class="ic-win" x="7.5" y="9" width="11" height="8" rx="1.8"/><path class="ic-cursor" d="M16 13.5l7 2.6-3 1.2-1.2 3z"/></svg></span>
-          <span class="cpb__en">PC use</span>
-          <h3>PC 작업</h3>
-          <p>폴더와 앱을 대신 열고, 내가 고른 창 하나를 보며 조작해요. 원본은 그대로 두고 사본에서 고쳐요.</p>
-        </li>
-        <li class="cpb__item cpb--flow reveal-up">
-          <span class="cpb__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path class="ic-rail" d="M8 11.6v1.2M8 19.4v1.2"/><circle class="ic-step s1" cx="8" cy="8" r="2.3"/><circle class="ic-step s2" cx="8" cy="16" r="2.3"/><circle class="ic-step s3" cx="8" cy="24" r="2.3"/><path d="M14 8h12M14 16h9M14 24h11"/></svg></span>
-          <span class="cpb__en">Workflows</span>
-          <h3>업무 흐름</h3>
-          <p>요청 착수, 회의 준비, 사이트 조사, 자료 수집. 자주 하는 일을 정해진 순서대로 진행해요.</p>
-        </li>
-        <li class="cpb__item cpb--par reveal-up">
-          <span class="cpb__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path class="ic-track" d="M6.5 11.5h19"/><path class="ic-bar a" d="M6.5 11.5h19" pathLength="1"/><path class="ic-track" d="M6.5 20.5h19"/><path class="ic-bar b" d="M6.5 20.5h19" pathLength="1"/></svg></span>
-          <span class="cpb__en">Parallel runs</span>
-          <h3>동시 진행</h3>
-          <p>두 가지 일을 한 번에 맡겨요. 일하는 중에도 다음 요청을 넣고 방향을 고칠 수 있어요.</p>
-        </li>
-        <li class="cpb__item cpb--file reveal-up">
-          <span class="cpb__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9.5 4.5H18l6.5 6.5v14.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2v-19a2 2 0 0 1 2-2z"/><path d="M18 4.5V11h6.5"/><path class="ic-up" d="M16 24v-8.5M12.6 18.9l3.4-3.4 3.4 3.4"/></svg></span>
-          <span class="cpb__en">Files</span>
-          <h3>파일과 결과물</h3>
-          <p>PDF·Office 첨부는 바로 미리 보고, 큰 파일은 끊겨도 이어서 올려요. 결과물은 Drive로 내보내요.</p>
-        </li>
-        <li class="cpb__item cpb--reuse reveal-up">
-          <span class="cpb__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><g class="ic-spin"><path d="M24.7 11A10 10 0 1 0 25.4 19.4"/><path d="M25.2 5.6v5.6h-5.6"/></g><path d="M12 14.5h8M12 18h5.5"/></svg></span>
-          <span class="cpb__en">Reuse</span>
-          <h3>다시 맡기기</h3>
-          <p>결과물마다 원래 요청과 다시 쓸 프롬프트가 남아요. 새 대화에 채워 바로 다시 맡겨요.</p>
-        </li>
-      </ul>
+      <div class="b-wrap">
+        <div class="tcard-grid cpb-grid">
+
+          <!-- browser use -->
+          <article class="tcard cpb-card reveal-up" data-cap="web">
+            <div class="tcard__media tcard__media--cap">
+              <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="mk mk-web" aria-hidden="true">
+                <div class="mk__bar">
+                  <span class="mk-web__nav"><i></i><i></i></span>
+                  <span class="mk-web__url"><svg viewBox="0 0 16 16"><rect x="3.5" y="7" width="9" height="6.5" rx="1.6"/><path d="M5.5 7V5.4a2.5 2.5 0 0 1 5 0V7"/></svg>vendor.example/pricing</span>
+                  <span class="mk-chip" data-c="run"><i></i><span data-chip>읽는 중</span></span>
+                </div>
+                <div class="mk-web__body">
+                  <div class="mk-web__page">
+                    <p class="mk-web__h">2026 하반기 매체 단가표</p>
+                    <p class="mk-web__sub">10월 2일 업데이트 · 부가세 별도</p>
+                    <div class="mk-web__table">
+                      <div class="mk-web__tr mk-web__th"><span>상품</span><span>단가</span><span>기간</span></div>
+                      <div class="mk-web__tr" data-row><span>디스플레이 A</span><span>1,200만</span><span>4주</span></div>
+                      <div class="mk-web__tr" data-row><span>동영상 B</span><span>980만</span><span>2주</span></div>
+                      <div class="mk-web__tr" data-row><span>검색 C</span><span>1,500만</span><span>4주</span></div>
+                      <i class="mk-web__hl" data-hl></i>
+                    </div>
+                    <span class="mk-web__dl" data-dl><svg viewBox="0 0 16 16"><path d="M8 3v7M5 7.5l3 3 3-3M3.5 13h9"/></svg>PDF 받기</span>
+                  </div>
+                  <div class="mk-web__side">
+                    <div class="mk-who"><img src="assets/img/team/luna.webp" alt=""><b>루나</b><span>브라우저 작업</span></div>
+                    <div class="mk-step" data-s="ok"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>페이지 열기</span></div>
+                    <div class="mk-step" data-s="run" data-step="read"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>단가표 읽기</span><em>3행</em></div>
+                    <div class="mk-step" data-s="wait" data-step="get"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>PDF 받기</span></div>
+                    <div class="mk-dlfile" data-file>
+                      <span class="ft ft--pdf"></span>
+                      <span class="mk-dlfile__t"><b>단가표_2026H2.pdf</b><span>312KB</span></span>
+                      <span class="mk-dlfile__bar"><i data-file-fill></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="fcursor" data-cursor aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 3l14 8.2-6.1 1.3 3.6 6.6-2.6 1.4-3.6-6.6L5.6 18z" fill="#1E1E1E" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+            </div>
+            <div class="tcard__foot tcard__foot--stack">
+              <p class="b-eyebrow b-eyebrow--sm"><i></i>Browser use · 브라우저 작업</p>
+              <h3>Goes to the web for you.</h3>
+              <p>웹을 검색하고, 페이지를 열어 읽고, 링크를 따라가 필요한 파일까지 받아 와요.</p>
+            </div>
+          </article>
+
+          <!-- pc use -->
+          <article class="tcard cpb-card reveal-up" data-cap="pc">
+            <div class="tcard__media tcard__media--cap">
+              <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="mk mk-pc" aria-hidden="true">
+                <div class="mk-pc__desk">
+                  <div class="pcw pcw--files" data-files>
+                    <div class="pcw__bar"><i class="pcw__ic pcw__ic--folder"></i>보고서 › 10월<span class="pcw__ctl"><i></i><i></i><i></i></span></div>
+                    <div class="pcw__rows">
+                      <div class="pcw__row" data-src><span class="ft ft--xls"></span>10월_성과.xlsx<span class="pcw__meta">원본</span></div>
+                      <div class="pcw__row pcw__row--copy" data-copy><span class="ft ft--xls"></span>10월_성과 (사본).xlsx<span class="pcw__meta pcw__tag">사본</span></div>
+                      <div class="pcw__row"><span class="ft ft--doc"></span>회의록_1014.docx</div>
+                      <div class="pcw__row"><span class="ft ft--dir"></span>참고자료</div>
+                    </div>
+                  </div>
+                  <div class="pcw pcw--sheet" data-sheet>
+                    <span class="pcw__pick">선택한 창</span>
+                    <div class="pcw__bar"><i class="pcw__ic pcw__ic--xls"></i>10월_성과 (사본).xlsx<span class="pcw__ctl"><i></i><i></i><i></i></span></div>
+                    <div class="sh">
+                      <div class="sh__r sh__h"><span></span><span>채널</span><span>10월</span><span>전월 대비</span></div>
+                      <div class="sh__r"><span>1</span><span>검색</span><span>4,820</span><span data-cell>+12%</span></div>
+                      <div class="sh__r"><span>2</span><span>디스플레이</span><span>3,110</span><span data-cell>-3%</span></div>
+                      <div class="sh__r"><span>3</span><span>동영상</span><span>2,460</span><span data-cell>+8%</span></div>
+                    </div>
+                    <p class="pcw__note" data-saved><svg viewBox="0 0 16 16"><path d="M4 8.3l2.5 2.5L12 5.3"/></svg>저장 확인 · 원본은 그대로</p>
+                  </div>
+                  <div class="pc-ask" data-ask>
+                    <img src="assets/img/moncoti-icon.webp" alt="">
+                    <div class="pc-ask__t"><b>폴더를 열까요?</b><span>문서 › 보고서 › 10월</span></div>
+                    <span class="pc-ask__btn" data-allow>허용</span>
+                    <span class="pc-ask__btn pc-ask__btn--ghost">거절</span>
+                    <span class="pc-ask__ok"><svg viewBox="0 0 16 16"><path d="M4 8.3l2.5 2.5L12 5.3"/></svg>허용함</span>
+                  </div>
+                </div>
+                <div class="mk-pc__task"><i></i><i class="on"></i><i></i><i></i><i></i></div>
+              </div>
+              <span class="fcursor" data-cursor aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 3l14 8.2-6.1 1.3 3.6 6.6-2.6 1.4-3.6-6.6L5.6 18z" fill="#1E1E1E" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+            </div>
+            <div class="tcard__foot tcard__foot--stack">
+              <p class="b-eyebrow b-eyebrow--sm"><i></i>PC use · PC 작업</p>
+              <h3>Works on your PC, too.</h3>
+              <p>폴더와 앱을 열고, 내가 고른 창 하나를 보며 조작해요. 원본은 그대로 두고 사본에서 고쳐요.</p>
+            </div>
+          </article>
+
+          <!-- workflows -->
+          <article class="tcard cpb-card reveal-up" data-cap="flow">
+            <div class="tcard__media tcard__media--cap">
+              <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="mk mk-flow" aria-hidden="true">
+                <div class="mk__bar">
+                  <span class="mk__ic"><svg viewBox="0 0 16 16"><circle cx="4" cy="4" r="1.6"/><circle cx="4" cy="12" r="1.6"/><path d="M4 5.6v4.8M7.5 4h5M7.5 8h3.5M7.5 12h5"/></svg></span>
+                  <b>업무 흐름</b>
+                  <span class="mk-chip" data-c="idle"><i></i><span data-chip>제안</span></span>
+                </div>
+                <div class="mk-flow__body">
+                  <div class="mk-flow__chips"><span>요청 착수</span><span>사이트 조사</span><span class="on">회의 준비</span><span>자료 수집</span><span>+2</span></div>
+                  <div class="mk-flow__sug" data-sug>
+                    <img src="assets/img/team/rena.webp" alt="">
+                    <div class="mk-flow__sug-t"><b>오후 3:00 파트너 킥오프가 있어요</b><span>레나가 회의 준비를 제안해요</span></div>
+                    <span class="mk-btn mk-btn--primary" data-start>회의 준비 시작</span>
+                  </div>
+                  <div class="mk-flow__steps">
+                    <div class="mk-step" data-s="wait"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>일정과 참석자 확인</span><em>참석자 5명</em></div>
+                    <div class="mk-step" data-s="wait"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>관련 메일·문서 모으기</span><em>메일 6 · 문서 3</em></div>
+                    <div class="mk-step" data-s="wait"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>미결 쟁점 정리</span><em>3건</em></div>
+                    <div class="mk-step" data-s="wait"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>브리핑 초안 만들기</span><em>초안 1개</em></div>
+                  </div>
+                  <div class="mk-flow__out" data-out><span class="ft ft--doc"></span><b>킥오프 브리핑 초안</b><span class="mk-flow__src">근거 9개</span><span class="mk-btn">열기</span></div>
+                </div>
+              </div>
+              <span class="fcursor" data-cursor aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 3l14 8.2-6.1 1.3 3.6 6.6-2.6 1.4-3.6-6.6L5.6 18z" fill="#1E1E1E" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+            </div>
+            <div class="tcard__foot tcard__foot--stack">
+              <p class="b-eyebrow b-eyebrow--sm"><i></i>Workflows · 업무 흐름</p>
+              <h3>Routine work, step by step.</h3>
+              <p>요청 착수, 회의 준비, 사이트 조사, 자료 수집. 자주 하는 일을 정해진 순서대로 진행해요.</p>
+            </div>
+          </article>
+
+          <!-- parallel runs -->
+          <article class="tcard cpb-card reveal-up" data-cap="par">
+            <div class="tcard__media tcard__media--cap">
+              <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="mk mk-par" aria-hidden="true">
+                <div class="mk__bar">
+                  <span class="mk__ic"><svg viewBox="0 0 16 16"><path d="M3 5h10M3 11h10"/><circle cx="11" cy="5" r="1.6"/><circle cx="6" cy="11" r="1.6"/></svg></span>
+                  <b>진행 중인 대화</b>
+                  <span class="mk-chip" data-c="run"><i></i><span data-chip>2개 동시 진행</span></span>
+                </div>
+                <div class="mk-par__lanes">
+                  <div class="lane" data-lane="a">
+                    <div class="lane__head"><img src="assets/img/team/luna.webp" alt=""><div><b>루나</b><span>10월 캠페인 성과 정리</span></div></div>
+                    <div class="lane__bar"><i data-fill></i></div>
+                    <p class="lane__st" data-st>채널별 수치 모으는 중</p>
+                    <div class="lane__lines"><i></i><i></i><i></i></div>
+                    <span class="lane__fix" data-fix><svg viewBox="0 0 16 16"><path d="M3 11.5V13h1.5l6.6-6.6-1.5-1.5zM10.6 3.9l1.5 1.5"/></svg>정정 받음 · 다음 단계에 반영</span>
+                  </div>
+                  <div class="lane" data-lane="b">
+                    <div class="lane__head"><img src="assets/img/team/seon.webp" alt=""><div><b>세온</b><span>파트너 제안 메일 초안</span></div></div>
+                    <div class="lane__bar"><i data-fill></i></div>
+                    <p class="lane__st" data-st>제안 포인트 정리 중</p>
+                    <div class="lane__lines"><i></i><i></i><i></i></div>
+                  </div>
+                </div>
+                <div class="mk-par__composer">
+                  <span class="mk-par__to">루나에게</span>
+                  <span class="mk-par__input" data-typed="표는 지난달 대비로 바꿔줘"></span>
+                  <span class="mk-par__send" data-send><svg viewBox="0 0 16 16"><path d="M8 12.5v-9M4.5 7L8 3.5 11.5 7"/></svg></span>
+                </div>
+              </div>
+            </div>
+            <div class="tcard__foot tcard__foot--stack">
+              <p class="b-eyebrow b-eyebrow--sm"><i></i>Parallel runs · 동시 진행</p>
+              <h3>Two jobs at once.</h3>
+              <p>두 가지 일을 한 번에 맡겨요. 일하는 중에도 다음 요청을 넣고 방향을 고칠 수 있어요.</p>
+            </div>
+          </article>
+
+          <!-- files -->
+          <article class="tcard cpb-card reveal-up" data-cap="file">
+            <div class="tcard__media tcard__media--cap">
+              <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="mk mk-fl" aria-hidden="true">
+                <div class="mk__bar">
+                  <span class="mk__ic"><svg viewBox="0 0 16 16"><path d="M10.5 6.5l-4 4a1.8 1.8 0 0 1-2.5-2.5l4.6-4.6a3 3 0 0 1 4.2 4.2l-4.6 4.6"/></svg></span>
+                  <b>첨부와 결과물</b>
+                  <span class="mk-chip" data-c="run"><i></i><span data-chip>올리는 중</span></span>
+                </div>
+                <div class="mk-fl__body">
+                  <div class="mk-fl__pdf">
+                    <div class="pdfv">
+                      <div class="pdfv__page on"><b class="pdfv__hd"></b><i style="width:86%"></i><i style="width:72%"></i><i style="width:80%"></i><span class="pdfv__sw"><b style="background:#1E1E1E"></b><b style="background:#0057FF"></b><b style="background:#F2B53A"></b><b style="background:#EDEAE3"></b></span><i style="width:64%"></i></div>
+                      <div class="pdfv__page"><b class="pdfv__hd" style="width:56%"></b><span class="pdfv__img"></span><i style="width:90%"></i><i style="width:70%"></i><i style="width:82%"></i></div>
+                      <div class="pdfv__page"><b class="pdfv__hd" style="width:48%"></b><i style="width:84%"></i><i style="width:76%"></i><span class="pdfv__grid"><b></b><b></b><b></b><b></b></span><i style="width:60%"></i></div>
+                    </div>
+                    <p class="mk-fl__cap"><span class="ft ft--pdf"></span><span class="mk-fl__name">브랜드 가이드라인.pdf</span><span data-pg>1 / 12</span></p>
+                  </div>
+                  <div class="mk-fl__side">
+                    <div class="up" data-up>
+                      <div class="up__top"><span class="ft ft--vid"></span><b>캠페인_원본영상.mp4</b><span class="up__size">1.2GB</span></div>
+                      <div class="up__bar"><i data-up-fill></i></div>
+                      <p class="up__st" data-up-st>올리는 중 0%</p>
+                    </div>
+                    <div class="ex" data-ex>
+                      <div class="ex__top"><span class="ft ft--doc"></span><b>10월 성과 보고서.docx</b></div>
+                      <span class="ex__btn" data-export><img src="assets/img/gws/drive.png" alt="">Drive로 내보내기</span>
+                      <p class="ex__ok"><svg viewBox="0 0 16 16"><path d="M4 8.3l2.5 2.5L12 5.3"/></svg>Drive에 저장됨 · 내 드라이브 › 보고서</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="fcursor" data-cursor aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 3l14 8.2-6.1 1.3 3.6 6.6-2.6 1.4-3.6-6.6L5.6 18z" fill="#1E1E1E" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+            </div>
+            <div class="tcard__foot tcard__foot--stack">
+              <p class="b-eyebrow b-eyebrow--sm"><i></i>Files · 파일과 결과물</p>
+              <h3>Files in, results out.</h3>
+              <p>PDF·Office 첨부는 바로 미리 보고, 큰 파일은 끊겨도 이어서 올려요. 결과물은 Drive로 내보내요.</p>
+            </div>
+          </article>
+
+          <!-- reuse -->
+          <article class="tcard cpb-card reveal-up" data-cap="reuse">
+            <div class="tcard__media tcard__media--cap">
+              <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="mk mk-ru" aria-hidden="true">
+                <div class="mk__bar">
+                  <span class="ft ft--doc"></span>
+                  <b>10월 성과 보고서</b>
+                  <span class="mk-chip" data-c="ok"><i></i><span data-chip>결과물</span></span>
+                </div>
+                <div class="mk-ru__body">
+                  <div class="how">
+                    <div class="how__head"><span class="how__label">만든 방법</span><span class="mk-btn mk-btn--primary" data-fill-btn>새 대화에 채우기</span></div>
+                    <div class="how__row"><span>원래 요청</span><p>10월 성과를 채널별로 정리해서 지난달 대비 표로 만들어줘</p></div>
+                    <div class="how__row"><span>다시 쓸 프롬프트</span><p class="how__prompt">채널별 성과를 정리해서 지난달 대비 표로 만들어줘</p></div>
+                  </div>
+                  <div class="cmp" data-cmp data-typed="채널별 성과를 정리해서 지난달 대비 표로 만들어줘">
+                    <div class="cmp__who"><img src="assets/img/team/hana.webp" alt=""><span>하나 · 새 대화</span></div>
+                    <p class="cmp__input"><span data-cmp-text></span><i class="cmp__caret"></i></p>
+                    <div class="cmp__foot"><span class="cmp__note" data-cmp-note>초안만 채웠어요 · 보내기는 직접</span><span class="cmp__send">보내기</span></div>
+                  </div>
+                </div>
+              </div>
+              <span class="fcursor" data-cursor aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 3l14 8.2-6.1 1.3 3.6 6.6-2.6 1.4-3.6-6.6L5.6 18z" fill="#1E1E1E" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+            </div>
+            <div class="tcard__foot tcard__foot--stack">
+              <p class="b-eyebrow b-eyebrow--sm"><i></i>Reuse · 다시 맡기기</p>
+              <h3>Every result remembers how.</h3>
+              <p>결과물마다 원래 요청과 다시 쓸 프롬프트가 남아요. 새 대화에 채워 바로 다시 맡겨요.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
     </section>
 
     <!-- CTA -->
