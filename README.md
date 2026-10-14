@@ -13,7 +13,7 @@ css/intro.css       로고, 마스코트 구간
 css/bottom.css      하단(Google Workspace 아코디언, Today, Control, Privacy, Capabilities, CTA). 모든 선택자가 .v3b 아래에 있어요
 js/main.js          히어로 시연, 동료 탭, 글자 풀림 효과, 다운로드 버튼
 js/intro.js         마스코트 영상, 게이지·동료·기억 칩 등장
-js/bottom.js        아코디언, Today 카드, 확인/멈춤 카드, Capabilities 카드 4개의 화면 시연과 모바일 넘기기, 배경 테마(?bg=)
+js/bottom.js        아코디언, Today 카드, 확인/멈춤 카드, Capabilities 카드 6개의 화면 시연과 모바일 넘기기, 배경 테마(?bg=)
 assets/fonts/       Newsreader, Outfit, Pretendard. sub/에는 이 페이지에 쓰인 글자만 담은 가벼운 폰트
 assets/img/         아이콘, 파비콘, 마스코트 정지 컷, 동료 아바타(team), Google 제품 로고(gws)
 assets/video/       마스코트 루프 영상(7.3초, 무음)
