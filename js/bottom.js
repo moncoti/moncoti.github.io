@@ -336,4 +336,432 @@
       });
     }
   }
+
+  /* ---------- Capabilities: live MonCoti screens ---------- */
+  const capCard = (name) => q(`[data-cap="${name}"]`);
+  const setChip = (chip, c, text) => {
+    if (!chip) return;
+    chip.dataset.c = c;
+    const t = q('[data-chip]', chip);
+    if (t && text) t.textContent = text;
+  };
+  const press = async (el, ms = 170) => {
+    el.classList.add('is-pressed');
+    await sleep(ms);
+    el.classList.remove('is-pressed');
+  };
+  const instant = (el, fn) => {
+    const prev = el.style.transition;
+    el.style.transition = 'none';
+    fn();
+    void el.offsetWidth;
+    el.style.transition = prev;
+  };
+
+  // 1. browser use: read the table row by row, then download the PDF
+  (() => {
+    const card = capCard('web');
+    if (!card) return;
+    const media = q('.tcard__media', card);
+    const chip = q('.mk-chip', card);
+    const table = q('.mk-web__table', card);
+    const rows = qa('[data-row]', card);
+    const hl = q('[data-hl]', card);
+    const read = q('[data-step="read"]', card);
+    const get = q('[data-step="get"]', card);
+    const dl = q('[data-dl]', card);
+    const file = q('[data-file]', card);
+    const fill = q('[data-file-fill]', card);
+    const cur = makeCursor(media);
+    const hlTo = (row) => {
+      const t = table.getBoundingClientRect();
+      const r = row.getBoundingClientRect();
+      hl.style.top = (r.top - t.top) + 'px';
+      hl.style.height = r.height + 'px';
+    };
+    const reset = () => {
+      setChip(chip, 'run', '읽는 중');
+      read.dataset.s = 'run';
+      get.dataset.s = 'wait';
+      hl.classList.remove('is-on');
+      file.classList.remove('is-on');
+      instant(fill, () => { fill.style.width = '0'; });
+    };
+    if (still) {
+      setChip(chip, 'ok', '완료');
+      read.dataset.s = 'ok';
+      get.dataset.s = 'ok';
+      file.classList.add('is-on');
+      fill.style.width = '100%';
+      return;
+    }
+    whileVisible(media, async (cancelled) => {
+      while (!cancelled()) {
+        reset();
+        cur.hide();
+        cur.rest();
+        await sleep(900); if (cancelled()) return;
+        instant(hl, () => hlTo(rows[0]));
+        hl.classList.add('is-on');
+        for (const r of rows) {
+          hlTo(r);
+          await sleep(780); if (cancelled()) return;
+        }
+        hl.classList.remove('is-on');
+        read.dataset.s = 'ok';
+        await sleep(350);
+        cur.show();
+        await sleep(200);
+        cur.to(dl);
+        await sleep(1000); if (cancelled()) return;
+        await cur.click();
+        await press(dl);
+        get.dataset.s = 'run';
+        setChip(chip, 'run', '받는 중');
+        file.classList.add('is-on');
+        await sleep(300);
+        fill.style.width = '100%';
+        cur.rest();
+        cur.hide();
+        await sleep(1250); if (cancelled()) return;
+        get.dataset.s = 'ok';
+        setChip(chip, 'ok', '완료');
+        await sleep(3000);
+      }
+    });
+  })();
+
+  // 2. pc use: approve the folder, make a copy, pick the copy's window, fill the cells
+  (() => {
+    const card = capCard('pc');
+    if (!card) return;
+    const media = q('.tcard__media', card);
+    const ask = q('[data-ask]', card);
+    const allow = q('[data-allow]', card);
+    const files = q('[data-files]', card);
+    const src = q('[data-src]', card);
+    const copy = q('[data-copy]', card);
+    const sheet = q('[data-sheet]', card);
+    const cells = qa('[data-cell]', card);
+    const saved = q('[data-saved]', card);
+    const cur = makeCursor(media);
+    const reset = () => {
+      ask.classList.remove('is-ok', 'is-gone');
+      files.classList.remove('is-on');
+      src.classList.remove('is-sel');
+      copy.classList.remove('is-on', 'is-sel');
+      sheet.classList.remove('is-on', 'is-picked');
+      cells.forEach((c) => c.classList.remove('is-typing', 'is-done'));
+      saved.classList.remove('is-on');
+    };
+    if (still) {
+      ask.classList.add('is-gone');
+      files.classList.add('is-on');
+      copy.classList.add('is-on');
+      sheet.classList.add('is-on', 'is-picked');
+      cells.forEach((c) => c.classList.add('is-done'));
+      saved.classList.add('is-on');
+      return;
+    }
+    whileVisible(media, async (cancelled) => {
+      while (!cancelled()) {
+        reset();
+        cur.hide();
+        cur.rest();
+        await sleep(1100); if (cancelled()) return;
+        cur.show();
+        await sleep(200);
+        cur.to(allow);
+        await sleep(1000); if (cancelled()) return;
+        await cur.click();
+        await press(allow);
+        ask.classList.add('is-ok');
+        await sleep(650);
+        ask.classList.add('is-gone');
+        cur.rest();
+        cur.hide();
+        files.classList.add('is-on');
+        await sleep(800); if (cancelled()) return;
+        src.classList.add('is-sel');
+        await sleep(600);
+        copy.classList.add('is-on');
+        await sleep(450);
+        src.classList.remove('is-sel');
+        copy.classList.add('is-sel');
+        await sleep(700); if (cancelled()) return;
+        sheet.classList.add('is-on');
+        await sleep(450);
+        sheet.classList.add('is-picked');
+        await sleep(650);
+        for (const c of cells) {
+          c.classList.add('is-typing');
+          await sleep(430); if (cancelled()) return;
+          c.classList.remove('is-typing');
+          c.classList.add('is-done');
+        }
+        await sleep(250);
+        saved.classList.add('is-on');
+        await sleep(3200);
+      }
+    });
+  })();
+
+  // 3. workflows: start from the suggestion, run the steps in order
+  (() => {
+    const card = capCard('flow');
+    if (!card) return;
+    const media = q('.tcard__media', card);
+    const chip = q('.mk-chip', card);
+    const sug = q('[data-sug]', card);
+    const start = q('[data-start]', card);
+    const steps = qa('.mk-flow__steps .mk-step', card);
+    const out = q('[data-out]', card);
+    const cur = makeCursor(media);
+    const reset = () => {
+      setChip(chip, 'idle', '제안');
+      sug.classList.remove('is-gone');
+      steps.forEach((s) => { s.dataset.s = 'wait'; });
+      out.classList.remove('is-on');
+    };
+    if (still) {
+      setChip(chip, 'ok', '완료');
+      sug.classList.add('is-gone');
+      steps.forEach((s) => { s.dataset.s = 'ok'; });
+      out.classList.add('is-on');
+      return;
+    }
+    whileVisible(media, async (cancelled) => {
+      while (!cancelled()) {
+        reset();
+        cur.hide();
+        cur.rest();
+        await sleep(1200); if (cancelled()) return;
+        cur.show();
+        await sleep(200);
+        cur.to(start);
+        await sleep(1000); if (cancelled()) return;
+        await cur.click();
+        await press(start);
+        sug.classList.add('is-gone');
+        setChip(chip, 'run', '진행 중');
+        cur.rest();
+        cur.hide();
+        await sleep(350);
+        for (const s of steps) {
+          s.dataset.s = 'run';
+          await sleep(950); if (cancelled()) return;
+          s.dataset.s = 'ok';
+          await sleep(160);
+        }
+        out.classList.add('is-on');
+        setChip(chip, 'ok', '완료');
+        await sleep(3400);
+      }
+    });
+  })();
+
+  // 4. parallel runs: two lanes move at once, a correction lands mid-run
+  (() => {
+    const card = capCard('par');
+    if (!card) return;
+    const media = q('.tcard__media', card);
+    const lane = (k) => {
+      const el = q(`[data-lane="${k}"]`, card);
+      return { el, fill: q('[data-fill]', el), st: q('[data-st]', el), lines: qa('.lane__lines i', el), fix: q('[data-fix]', el) };
+    };
+    const A = lane('a');
+    const B = lane('b');
+    const comp = q('.mk-par__composer', card);
+    const input = q('.mk-par__input', card);
+    const send = q('[data-send]', card);
+    const WIDTHS = ['92%', '76%', '54%'];
+    const setSt = async (L, text) => {
+      L.st.style.opacity = '0';
+      await sleep(160);
+      L.st.textContent = text;
+      L.st.style.opacity = '1';
+    };
+    const setFill = (L, pct, ms) => { L.fill.style.transitionDuration = ms + 'ms'; L.fill.style.width = pct + '%'; };
+    const lines = (L, n) => L.lines.forEach((i, k) => { i.style.width = k < n ? WIDTHS[k] : '0'; });
+    const reset = () => {
+      [A, B].forEach((L) => {
+        L.el.classList.remove('is-done');
+        setFill(L, 0, 0);
+        L.lines.forEach((i) => instant(i, () => { i.style.width = '0'; }));
+      });
+      A.st.textContent = '채널별 수치 모으는 중';
+      B.st.textContent = '제안 포인트 정리 중';
+      A.fix.classList.remove('is-on');
+      input.textContent = '';
+      comp.classList.remove('is-focus');
+      send.classList.remove('is-ready');
+    };
+    if (still) {
+      [A, B].forEach((L) => { L.el.classList.add('is-done'); setFill(L, 100, 0); lines(L, 3); });
+      A.st.textContent = '완료 · 표 1개';
+      B.st.textContent = '완료 · 초안 1개';
+      return;
+    }
+    whileVisible(media, async (cancelled) => {
+      while (!cancelled()) {
+        reset();
+        await sleep(700); if (cancelled()) return;
+        setFill(A, 38, 2400);
+        setFill(B, 30, 2400);
+        lines(A, 1);
+        lines(B, 1);
+        await sleep(1300); if (cancelled()) return;
+        comp.classList.add('is-focus');
+        await typeText(input, input.dataset.typed, cancelled, [45, 85]); if (cancelled()) return;
+        send.classList.add('is-ready');
+        await sleep(350);
+        await press(send);
+        input.textContent = '';
+        send.classList.remove('is-ready');
+        comp.classList.remove('is-focus');
+        A.fix.classList.add('is-on');
+        setSt(A, '지난달 대비 표로 바꾸는 중');
+        setSt(B, '메일 본문 쓰는 중');
+        setFill(A, 70, 2200);
+        setFill(B, 64, 2200);
+        lines(A, 2);
+        lines(B, 2);
+        await sleep(2400); if (cancelled()) return;
+        A.fix.classList.remove('is-on');
+        setFill(A, 100, 1500);
+        setFill(B, 100, 1900);
+        lines(A, 3);
+        lines(B, 3);
+        await sleep(1550); if (cancelled()) return;
+        A.el.classList.add('is-done');
+        setSt(A, '완료 · 표 1개');
+        await sleep(420);
+        B.el.classList.add('is-done');
+        setSt(B, '완료 · 초안 1개');
+        await sleep(3200);
+      }
+    });
+  })();
+
+  // 5. files: a big upload drops, resumes, finishes; the result goes to Drive
+  (() => {
+    const card = capCard('file');
+    if (!card) return;
+    const media = q('.tcard__media', card);
+    const chip = q('.mk-chip', card);
+    const pages = qa('.pdfv__page', card);
+    const pg = q('[data-pg]', card);
+    const up = q('[data-up]', card);
+    const upFill = q('[data-up-fill]', card);
+    const upSt = q('[data-up-st]', card);
+    const ex = q('[data-ex]', card);
+    const exBtn = q('[data-export]', card);
+    const cur = makeCursor(media);
+    const showPage = (k) => {
+      pages.forEach((p, i) => p.classList.toggle('on', i === k));
+      pg.textContent = (k + 1) + ' / 12';
+    };
+    const upTo = (pct, ms) => { upFill.style.transitionDuration = ms + 'ms'; upFill.style.width = pct + '%'; };
+    const count = async (from, to, ms, label, cancelled) => {
+      const n = 14;
+      for (let i = 1; i <= n; i++) {
+        if (cancelled()) return;
+        upSt.textContent = label + ' ' + Math.round(from + (to - from) * i / n) + '%';
+        await sleep(ms / n);
+      }
+    };
+    const reset = () => {
+      up.classList.remove('is-warn', 'is-done');
+      upTo(0, 0);
+      upSt.textContent = '올리는 중 0%';
+      ex.classList.remove('is-done');
+      setChip(chip, 'run', '올리는 중');
+      showPage(0);
+    };
+    if (still) {
+      up.classList.add('is-done');
+      upTo(100, 0);
+      upSt.textContent = '올렸어요 · 1.2GB';
+      ex.classList.add('is-done');
+      setChip(chip, 'ok', '완료');
+      return;
+    }
+    whileVisible(media, async (cancelled) => {
+      while (!cancelled()) {
+        reset();
+        cur.hide();
+        cur.rest();
+        await sleep(700); if (cancelled()) return;
+        upTo(46, 1800);
+        await count(0, 46, 1800, '올리는 중', cancelled); if (cancelled()) return;
+        showPage(1);
+        up.classList.add('is-warn');
+        upSt.textContent = '연결이 끊겼어요 · 46%에서 멈춤';
+        setChip(chip, 'warn', '끊김');
+        await sleep(1500); if (cancelled()) return;
+        up.classList.remove('is-warn');
+        setChip(chip, 'run', '이어서');
+        upTo(100, 2000);
+        await count(46, 100, 2000, '이어서 올리는 중', cancelled); if (cancelled()) return;
+        up.classList.add('is-done');
+        upSt.textContent = '올렸어요 · 1.2GB';
+        showPage(2);
+        await sleep(700);
+        cur.show();
+        await sleep(200);
+        cur.to(exBtn);
+        await sleep(1000); if (cancelled()) return;
+        await cur.click();
+        await press(exBtn);
+        ex.classList.add('is-done');
+        setChip(chip, 'ok', '완료');
+        cur.rest();
+        cur.hide();
+        await sleep(3200);
+      }
+    });
+  })();
+
+  // 6. reuse: fill a new conversation from the result's prompt (draft only)
+  (() => {
+    const card = capCard('reuse');
+    if (!card) return;
+    const media = q('.tcard__media', card);
+    const btn = q('[data-fill-btn]', card);
+    const cmp = q('[data-cmp]', card);
+    const txt = q('[data-cmp-text]', card);
+    const note = q('[data-cmp-note]', card);
+    const cur = makeCursor(media);
+    const reset = () => {
+      txt.textContent = '';
+      note.classList.remove('is-on');
+      cmp.classList.remove('is-focus');
+    };
+    if (still) {
+      txt.textContent = cmp.dataset.typed;
+      note.classList.add('is-on');
+      return;
+    }
+    whileVisible(media, async (cancelled) => {
+      while (!cancelled()) {
+        reset();
+        cur.hide();
+        cur.rest();
+        await sleep(1100); if (cancelled()) return;
+        cur.show();
+        await sleep(200);
+        cur.to(btn);
+        await sleep(1000); if (cancelled()) return;
+        await cur.click();
+        await press(btn);
+        cur.rest();
+        cur.hide();
+        cmp.classList.add('is-focus');
+        await typeText(txt, cmp.dataset.typed, cancelled, [26, 52]); if (cancelled()) return;
+        note.classList.add('is-on');
+        await sleep(3400);
+      }
+    });
+  })();
+  /* ---------- /Capabilities ---------- */
 })();
