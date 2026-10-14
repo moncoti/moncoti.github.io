@@ -475,3 +475,56 @@
 .v3b .bg-switch{left:10px;right:10px;justify-content:center;overflow-x:auto}
 .v3b .bg-switch b{display:none}
 }
+.v3b .cpb{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-block:0;list-style:none}
+.v3b .cpb__item{position:relative;display:flex;flex-direction:column;min-height:276px;padding:30px 30px 32px;border-radius:28px;background:var(--media-bg);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out),filter .8s var(--ease-out),background-color .35s var(--b-ease)}
+.v3b .cpb__item:hover{background:color-mix(in srgb,var(--media-bg) 93%,#000)}
+.v3b .cpb__item:nth-child(5){transition-delay:.06s}
+.v3b .cpb__item:nth-child(6){transition-delay:.12s}
+.v3b .cpb__item.reveal-up.in:hover{transition-delay:0s}
+.v3b .cpb__icon{display:grid;place-items:center;width:56px;height:56px;border-radius:16px;background:#fff;color:var(--b-ink);box-shadow:0 1px 2px rgba(0,0,0,.05),0 6px 16px -8px rgba(0,0,0,.14)}
+.v3b .cpb__icon svg{width:32px;height:32px;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.v3b .cpb__icon .f{fill:currentColor;stroke:none}
+.v3b .cpb__en{margin-top:auto;padding-top:40px;font-family:var(--brand);font-size:12.5px;font-weight:500;line-height:1;letter-spacing:.09em;text-transform:uppercase;color:var(--b-ink-3)}
+.v3b .cpb__item h3{margin-top:10px;font-family:var(--sans);font-size:22px;font-weight:650;line-height:1.3;letter-spacing:-.015em;color:var(--b-ink)}
+.v3b .cpb__item p{margin-top:10px;font-size:15.5px;line-height:1.65;color:var(--b-ink-2);word-break:keep-all}
+.v3b .cpb .ic-cursor{fill:var(--b-ink);stroke:#fff;stroke-width:1.1;transform-box:fill-box;transform-origin:0 0}
+.v3b .cpb .ic-win,.v3b .cpb .ic-step{fill:transparent}
+.v3b .cpb .ic-rail{stroke:rgba(30,30,30,.28)}
+.v3b .cpb .ic-track{stroke:rgba(30,30,30,.1);stroke-width:5}
+.v3b .cpb .ic-bar{stroke-width:5;stroke-dasharray:1 2;stroke-dashoffset:.42}
+.v3b .cpb .ic-bar.a{stroke:var(--b-cobalt)}
+.v3b .cpb .ic-bar.b{stroke:var(--b-ink);stroke-dashoffset:.64}
+.v3b .cpb .ic-up{stroke:var(--b-cobalt)}
+.v3b .cpb .ic-spin{transform-origin:16px 16px}
+.v3b .cpb__item.in .ic-cursor{animation:cpb-cursor 4.8s var(--b-ease) infinite}
+.v3b .cpb__item.in .ic-link{animation:cpb-link 4.8s var(--b-ease) infinite}
+.v3b .cpb--pc.in .ic-cursor{animation-delay:1.4s}
+.v3b .cpb__item.in .ic-win{animation:cpb-win 4.8s var(--b-ease) 1.4s infinite}
+.v3b .cpb__item.in .ic-step{animation:cpb-step 4.8s var(--b-ease) infinite}
+.v3b .cpb__item.in .ic-step.s2{animation-delay:.5s}
+.v3b .cpb__item.in .ic-step.s3{animation-delay:1s}
+.v3b .cpb__item.in .ic-bar.a{animation:cpb-bar 4.4s var(--b-ease) infinite}
+.v3b .cpb__item.in .ic-bar.b{animation:cpb-bar 5.8s var(--b-ease) -1.9s infinite}
+.v3b .cpb__item.in .ic-up{animation:cpb-up 2.8s var(--b-ease) infinite}
+.v3b .cpb__item.in .ic-spin{animation:cpb-spin 5.2s var(--b-ease) infinite}
+@keyframes cpb-cursor{0%,8%{transform:translate(6px,6px);opacity:0}24%{opacity:1}40%{transform:translate(0,0)}46%{transform:scale(.8)}52%,74%{transform:translate(0,0);opacity:1}90%,100%{transform:translate(6px,6px);opacity:0}}
+@keyframes cpb-link{0%,44%{stroke:var(--b-ink)}50%,80%{stroke:var(--b-cobalt)}92%,100%{stroke:var(--b-ink)}}
+@keyframes cpb-win{0%,44%{fill:transparent;stroke:var(--b-ink)}50%,80%{fill:var(--b-cobalt-soft);stroke:var(--b-cobalt)}92%,100%{fill:transparent;stroke:var(--b-ink)}}
+@keyframes cpb-step{0%,6%{fill:transparent;stroke:var(--b-ink)}14%,68%{fill:var(--b-cobalt);stroke:var(--b-cobalt)}82%,100%{fill:transparent;stroke:var(--b-ink)}}
+@keyframes cpb-bar{0%{stroke-dashoffset:.94}68%,86%{stroke-dashoffset:0}100%{stroke-dashoffset:.94}}
+@keyframes cpb-up{0%{transform:translateY(3px);opacity:0}30%,62%{transform:none;opacity:1}100%{transform:translateY(-3px);opacity:0}}
+@keyframes cpb-spin{0%,58%{transform:rotate(0)}84%,100%{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){
+.v3b .cpb .ic-cursor,.v3b .cpb .ic-link,.v3b .cpb .ic-win,.v3b .cpb .ic-step,.v3b .cpb .ic-bar,.v3b .cpb .ic-up,.v3b .cpb .ic-spin{animation:none!important}
+}
+@media (max-width:1100px){
+.v3b .cpb__item{min-height:256px;padding:26px 26px 28px}
+}
+@media (max-width:980px){
+.v3b .cpb{grid-template-columns:repeat(2,1fr);gap:16px}
+}
+@media (max-width:640px){
+.v3b .cpb{grid-template-columns:1fr;gap:12px}
+.v3b .cpb__item{min-height:0;border-radius:24px}
+.v3b .cpb__en{padding-top:30px}
+}
