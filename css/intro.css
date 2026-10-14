@@ -9,6 +9,9 @@
 .foot-brand .logo{display:inline-flex;padding:0}
 .foot-brand .logo-mark{width:36px;height:36px;border-radius:10px}
 @media (max-width:640px){.logo-mark{width:28px;height:28px;border-radius:8px}}
+/* hero demo home screen: character mark instead of the old M| monogram */
+.watermark--mark{opacity:1}
+.watermark--mark img{display:block;width:56px;height:56px;border-radius:15px}
 
 .mx{--mx-w:400px;--mx-ratio:.6667;--mx-edge:.8058;max-width:1168px;margin:104px auto 0;text-align:left}
 .mx-top{display:flex;align-items:flex-end;gap:56px;padding-left:118px}
