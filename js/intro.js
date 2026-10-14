@@ -1,0 +1,58 @@
+/* MonCoti v3: mascot section in the Introducing block */
+(() => {
+  const panel = document.querySelector('[data-mx-panel]');
+  if (!panel) return;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Today gauge: a 270-degree ring made of six segments */
+  const gauge = panel.querySelector('[data-mx-gauge]');
+  const svg = gauge && gauge.querySelector('svg');
+  const num = gauge && gauge.querySelector('[data-mx-num]');
+  const SEGMENTS = 6;
+  const TARGET = 3;
+  const segs = [];
+  if (svg) {
+    const cx = 60, cy = 60, r = 46, sweep = 270, gapDeg = 6;
+    const pt = (deg) => [cx + r * Math.cos((deg * Math.PI) / 180), cy + r * Math.sin((deg * Math.PI) / 180)];
+    for (let i = 0; i < SEGMENTS; i++) {
+      const a0 = 135 + (sweep / SEGMENTS) * i + gapDeg / 2;
+      const a1 = 135 + (sweep / SEGMENTS) * (i + 1) - gapDeg / 2;
+      const [x0, y0] = pt(a0);
+      const [x1, y1] = pt(a1);
+      const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', `M${x0.toFixed(2)} ${y0.toFixed(2)} A${r} ${r} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`);
+      svg.appendChild(p);
+      segs.push(p);
+    }
+  }
+  const runGauge = () => {
+    if (!segs.length) return;
+    if (still) { segs.slice(0, TARGET).forEach((s) => s.classList.add('is-on')); num.textContent = TARGET; return; }
+    segs.forEach((s) => s.classList.remove('is-on'));
+    num.textContent = '0';
+    for (let i = 0; i < TARGET; i++) {
+      setTimeout(() => { segs[i].classList.add('is-on'); num.textContent = String(i + 1); }, 350 + i * 320);
+    }
+  };
+
+  new IntersectionObserver((entries, io) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      panel.classList.add('is-on');
+      runGauge();
+      io.disconnect();
+    });
+  }, { threshold: 0.35 }).observe(panel);
+
+  /* mascot loop: only play while visible; keep the still for reduced motion */
+  const video = document.querySelector('.mx-video');
+  if (video) {
+    if (still) { video.remove(); return; }
+    const figure = video.closest('.mx-figure');
+    video.addEventListener('playing', () => figure.classList.add('has-video'), { once: true });
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { const p = video.play(); if (p && p.catch) p.catch(() => {}); }
+      else video.pause();
+    }, { threshold: 0.2 }).observe(video);
+  }
+})();
