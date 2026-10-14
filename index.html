@@ -14,12 +14,12 @@
   <link rel="preload" href="assets/img/hero.webp" as="image" fetchpriority="high" />
   <link rel="preload" href="assets/fonts/sub/newsreader-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/sub/pretendard.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/fonts/fonts.css?v=2d7113bd" />
+  <link rel="stylesheet" href="assets/fonts/fonts.css?v=514bc5a8" />
   <link rel="stylesheet" href="css/styles.css?v=5eca1618" />
   <style>.mx,.v3b{visibility:hidden}</style>
   <link rel="stylesheet" href="css/intro.css?v=83eab8f5" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="css/bottom.css?v=b7819d8c" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="css/intro.css?v=83eab8f5" /><link rel="stylesheet" href="css/bottom.css?v=b7819d8c" /></noscript>
+  <link rel="stylesheet" href="css/bottom.css?v=9d035d19" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="css/intro.css?v=83eab8f5" /><link rel="stylesheet" href="css/bottom.css?v=9d035d19" /></noscript>
 </head>
 <body>
 
@@ -1006,28 +1006,84 @@
             </div>
           </article>
 
-        </div>
-        <div class="cpb-nav" role="group" aria-label="기능 카드 넘기기">
-          <button type="button" class="cpb-nav__btn" data-cpb-prev aria-label="이전 카드"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5"/></svg></button>
-          <button type="button" class="cpb-nav__btn" data-cpb-next aria-label="다음 카드"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5l4.5 4.5L6 12.5"/></svg></button>
-        </div>
-        <div class="cpb-more">
-          <article class="cpb-mini reveal-up" data-mini="file">
-            <span class="cpb-mini__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9.5 4.5H18l6.5 6.5v14.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2v-19a2 2 0 0 1 2-2z"/><path d="M18 4.5V11h6.5"/><path class="ic-up" d="M16 24v-8.5M12.6 18.9l3.4-3.4 3.4 3.4"/></svg></span>
-            <div class="cpb-mini__text">
+          <!-- files -->
+          <article class="tcard cpb-card reveal-up" data-cap="file">
+            <div class="tcard__media tcard__media--cap">
+              <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="mk mk-fl" aria-hidden="true">
+                <div class="mk__bar">
+                  <span class="mk__ic"><svg viewBox="0 0 16 16"><path d="M10.5 6.5l-4 4a1.8 1.8 0 0 1-2.5-2.5l4.6-4.6a3 3 0 0 1 4.2 4.2l-4.6 4.6"/></svg></span>
+                  <b>첨부와 결과물</b>
+                  <span class="mk-chip" data-c="run"><i></i><span data-chip>올리는 중</span></span>
+                </div>
+                <div class="mk-fl__body">
+                  <div class="mk-fl__pdf">
+                    <div class="pdfv">
+                      <div class="pdfv__page on"><b class="pdfv__hd"></b><i style="width:86%"></i><i style="width:72%"></i><i style="width:80%"></i><span class="pdfv__sw"><b style="background:#1E1E1E"></b><b style="background:#0057FF"></b><b style="background:#F2B53A"></b><b style="background:#EDEAE3"></b></span><i style="width:64%"></i></div>
+                      <div class="pdfv__page"><b class="pdfv__hd" style="width:56%"></b><span class="pdfv__img"></span><i style="width:90%"></i><i style="width:70%"></i><i style="width:82%"></i></div>
+                      <div class="pdfv__page"><b class="pdfv__hd" style="width:48%"></b><i style="width:84%"></i><i style="width:76%"></i><span class="pdfv__grid"><b></b><b></b><b></b><b></b></span><i style="width:60%"></i></div>
+                    </div>
+                    <p class="mk-fl__cap"><span class="ft ft--pdf"></span><span class="mk-fl__name">브랜드 가이드라인.pdf</span><span data-pg>1 / 12</span></p>
+                  </div>
+                  <div class="mk-fl__side">
+                    <div class="up" data-up>
+                      <div class="up__top"><span class="ft ft--vid"></span><b>캠페인_원본영상.mp4</b><span class="up__size">1.2GB</span></div>
+                      <div class="up__bar"><i data-up-fill></i></div>
+                      <p class="up__st" data-up-st>올리는 중 0%</p>
+                    </div>
+                    <div class="ex" data-ex>
+                      <div class="ex__top"><span class="ft ft--doc"></span><b>10월 성과 보고서.docx</b></div>
+                      <span class="ex__btn" data-export><img loading="lazy" decoding="async" src="assets/img/gws/drive.png" alt="">Drive로 내보내기</span>
+                      <p class="ex__ok"><svg viewBox="0 0 16 16"><path d="M4 8.3l2.5 2.5L12 5.3"/></svg>Drive에 저장됨 · 내 드라이브 › 보고서</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="fcursor" data-cursor aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 3l14 8.2-6.1 1.3 3.6 6.6-2.6 1.4-3.6-6.6L5.6 18z" fill="#1E1E1E" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+            </div>
+            <div class="tcard__foot tcard__foot--stack">
               <p class="b-eyebrow b-eyebrow--sm"><i></i>Files · 파일과 결과물</p>
               <h3>Files in, results out.</h3>
               <p>PDF·Office 첨부는 바로 미리 보고, 큰 파일은 끊겨도 이어서 올려요. 결과물은 Drive로 내보내요.</p>
             </div>
           </article>
-          <article class="cpb-mini reveal-up" data-mini="reuse">
-            <span class="cpb-mini__icon" aria-hidden="true"><svg viewBox="0 0 32 32"><g class="ic-spin"><path d="M24.7 11A10 10 0 1 0 25.4 19.4"/><path d="M25.2 5.6v5.6h-5.6"/></g><path d="M12 14.5h8M12 18h5.5"/></svg></span>
-            <div class="cpb-mini__text">
+
+          <!-- reuse -->
+          <article class="tcard cpb-card reveal-up" data-cap="reuse">
+            <div class="tcard__media tcard__media--cap">
+              <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="mk mk-ru" aria-hidden="true">
+                <div class="mk__bar">
+                  <span class="ft ft--doc"></span>
+                  <b>10월 성과 보고서</b>
+                  <span class="mk-chip" data-c="ok"><i></i><span data-chip>결과물</span></span>
+                </div>
+                <div class="mk-ru__body">
+                  <div class="how">
+                    <div class="how__head"><span class="how__label">만든 방법</span><span class="mk-btn mk-btn--primary" data-fill-btn>새 대화에 채우기</span></div>
+                    <div class="how__row"><span>원래 요청</span><p>10월 성과를 채널별로 정리해서 지난달 대비 표로 만들어줘</p></div>
+                    <div class="how__row"><span>다시 쓸 프롬프트</span><p class="how__prompt">채널별 성과를 정리해서 지난달 대비 표로 만들어줘</p></div>
+                  </div>
+                  <div class="cmp" data-cmp data-typed="채널별 성과를 정리해서 지난달 대비 표로 만들어줘">
+                    <div class="cmp__who"><img loading="lazy" decoding="async" src="assets/img/team/hana.webp" alt=""><span>하나 · 새 대화</span></div>
+                    <p class="cmp__input"><span data-cmp-text></span><i class="cmp__caret"></i></p>
+                    <div class="cmp__foot"><span class="cmp__note" data-cmp-note>초안만 채웠어요 · 보내기는 직접</span><span class="cmp__send">보내기</span></div>
+                  </div>
+                </div>
+              </div>
+              <span class="fcursor" data-cursor aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 3l14 8.2-6.1 1.3 3.6 6.6-2.6 1.4-3.6-6.6L5.6 18z" fill="#1E1E1E" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+            </div>
+            <div class="tcard__foot tcard__foot--stack">
               <p class="b-eyebrow b-eyebrow--sm"><i></i>Reuse · 다시 맡기기</p>
               <h3>Every result remembers how.</h3>
               <p>결과물마다 원래 요청과 다시 쓸 프롬프트가 남아요. 새 대화에 채워 바로 다시 맡겨요.</p>
             </div>
           </article>
+
+        </div>
+        <div class="cpb-nav" role="group" aria-label="기능 카드 넘기기">
+          <button type="button" class="cpb-nav__btn" data-cpb-prev aria-label="이전 카드"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5"/></svg></button>
+          <button type="button" class="cpb-nav__btn" data-cpb-next aria-label="다음 카드"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5l4.5 4.5L6 12.5"/></svg></button>
         </div>
       </div>
     </section>
@@ -1114,6 +1170,6 @@
 
   <script src="js/main.js?v=a4fd11ae"></script>
   <script src="js/intro.js?v=06779c5e"></script>
-  <script src="js/bottom.js?v=7ad6ed0d"></script>
+  <script src="js/bottom.js?v=1edb2679"></script>
 </body>
 </html>
