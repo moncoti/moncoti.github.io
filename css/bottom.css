@@ -475,6 +475,8 @@
 .v3b .bg-switch{left:10px;right:10px;justify-content:center;overflow-x:auto}
 .v3b .bg-switch b{display:none}
 }
+.v3b{visibility:visible}
+.v3b .acc-dot{box-sizing:content-box;border:8px solid transparent;background-clip:padding-box;margin:-8px}
 .v3b .cpb-grid{margin-top:0}
 .v3b .tcard__media--cap{height:350px}
 .v3b .mk{position:absolute;inset:24px;display:flex;flex-direction:column;background:#fff;border:var(--ui-border);border-radius:14px;box-shadow:var(--ui-shadow);overflow:hidden;font-size:12.5px;line-height:1.45;color:var(--b-ink);text-align:left}
