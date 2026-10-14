@@ -37,7 +37,7 @@
 @keyframes b-drift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(6%,-5%,0) scale(1.08)}100%{transform:translate3d(-5%,4%,0) scale(.96)}}
 @keyframes b-drift2{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-7%,5%,0) scale(1.1)}100%{transform:translate3d(5%,-3%,0) scale(.95)}}
 @keyframes b-bob{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(var(--r,0deg))}}
-.v3b .acc-wrap{--dur:7s;max-width:1336px;margin:0 auto;padding:0 var(--b-pad)}
+.v3b .acc-wrap{--dur:7s;max-width:calc(var(--b-wrap) + var(--b-pad) * 2);margin:0 auto;padding:0 var(--b-pad)}
 .v3b .acc-row{--h:560px;--cw:104px;--gap:16px;display:flex;gap:var(--gap);height:var(--h)}
 .v3b .acc-item{position:relative;flex:0 0 var(--cw);min-width:0;border-radius:24px;overflow:hidden;isolation:isolate;color:var(--acc-ink);transition:flex-grow .6s var(--b-ease),height .6s var(--b-ease)}
 .v3b .acc-item.is-active{flex-grow:1}
