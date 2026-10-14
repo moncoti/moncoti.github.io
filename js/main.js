@@ -48,17 +48,19 @@
     closeBtn.style.left = Math.round(t.left + (t.width - 44) / 2) + "px";
     closeBtn.style.top = Math.round(top) + "px";
     if (logoCopy && logo) {
+      // centre the copy on the same line as the close button, using the copy's own height (the header logo has a padded tap area)
       const l = logo.getBoundingClientRect();
+      const ch = logoCopy.offsetHeight || 28;
       logoCopy.style.left = Math.round(l.left) + "px";
-      logoCopy.style.top = Math.round(top + 22 - l.height / 2) + "px";
+      logoCopy.style.top = Math.round(top + 22 - ch / 2) + "px";
     }
     panel.style.setProperty("--m-top", Math.round(top + 44 + 28) + "px");
   };
   const focusables = () => [...panel.querySelectorAll("a[href], button")].filter((el) => el.getAttribute("tabindex") !== "-1" && el.offsetParent !== null);
   // keyboard opens move focus to the close button; taps focus the panel itself (no focus ring on touch)
   const open = (byKeyboard) => {
-    place();
     panel.hidden = false;
+    place();
     void panel.offsetWidth;
     panel.classList.add("is-open");
     document.documentElement.classList.add("menu-lock");
