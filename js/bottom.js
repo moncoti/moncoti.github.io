@@ -643,125 +643,40 @@
     });
   })();
 
-  // 5. files: a big upload drops, resumes, finishes; the result goes to Drive
+  // swipe strip arrows (tablet / mobile only; the strip is a plain 2x2 grid on desktop)
   (() => {
-    const card = capCard('file');
-    if (!card) return;
-    const media = q('.tcard__media', card);
-    const chip = q('.mk-chip', card);
-    const pages = qa('.pdfv__page', card);
-    const pg = q('[data-pg]', card);
-    const up = q('[data-up]', card);
-    const upFill = q('[data-up-fill]', card);
-    const upSt = q('[data-up-st]', card);
-    const ex = q('[data-ex]', card);
-    const exBtn = q('[data-export]', card);
-    const cur = makeCursor(media);
-    const showPage = (k) => {
-      pages.forEach((p, i) => p.classList.toggle('on', i === k));
-      pg.textContent = (k + 1) + ' / 12';
+    const grid = q('.cpb-grid');
+    const prev = q('[data-cpb-prev]');
+    const next = q('[data-cpb-next]');
+    if (!grid || !prev || !next) return;
+    const step = () => {
+      const c = q('.cpb-card', grid);
+      const gap = parseFloat(getComputedStyle(grid).columnGap) || 16;
+      return c ? c.getBoundingClientRect().width + gap : grid.clientWidth * 0.8;
     };
-    const upTo = (pct, ms) => { upFill.style.transitionDuration = ms + 'ms'; upFill.style.width = pct + '%'; };
-    const count = async (from, to, ms, label, cancelled) => {
-      const n = 14;
-      for (let i = 1; i <= n; i++) {
-        if (cancelled()) return;
-        upSt.textContent = label + ' ' + Math.round(from + (to - from) * i / n) + '%';
-        await sleep(ms / n);
-      }
+    const cards = qa('.cpb-card', grid);
+    let target = 0;
+    let lastTap = 0;
+    const sync = () => {
+      const max = grid.scrollWidth - grid.clientWidth - 2;
+      prev.disabled = grid.scrollLeft <= 2;
+      next.disabled = max <= 0 || grid.scrollLeft >= max;
     };
-    const reset = () => {
-      up.classList.remove('is-warn', 'is-done');
-      upTo(0, 0);
-      upSt.textContent = '올리는 중 0%';
-      ex.classList.remove('is-done');
-      setChip(chip, 'run', '올리는 중');
-      showPage(0);
+    // quick taps add up: while a slide is still running, count from its target card instead of the current position
+    const go = (dir) => {
+      const now = performance.now();
+      const s = step();
+      const max = grid.scrollWidth - grid.clientWidth;
+      const base = now - lastTap < 900 ? target : Math.round(grid.scrollLeft / s);
+      target = Math.max(0, Math.min(cards.length - 1, base + dir));
+      lastTap = now;
+      grid.scrollTo({ left: Math.min(max, target * s), behavior: still ? 'auto' : 'smooth' });
     };
-    if (still) {
-      up.classList.add('is-done');
-      upTo(100, 0);
-      upSt.textContent = '올렸어요 · 1.2GB';
-      ex.classList.add('is-done');
-      setChip(chip, 'ok', '완료');
-      return;
-    }
-    whileVisible(media, async (cancelled) => {
-      while (!cancelled()) {
-        reset();
-        cur.hide();
-        cur.rest();
-        await sleep(700); if (cancelled()) return;
-        upTo(46, 1800);
-        await count(0, 46, 1800, '올리는 중', cancelled); if (cancelled()) return;
-        showPage(1);
-        up.classList.add('is-warn');
-        upSt.textContent = '연결이 끊겼어요 · 46%에서 멈춤';
-        setChip(chip, 'warn', '끊김');
-        await sleep(1500); if (cancelled()) return;
-        up.classList.remove('is-warn');
-        setChip(chip, 'run', '이어서');
-        upTo(100, 2000);
-        await count(46, 100, 2000, '이어서 올리는 중', cancelled); if (cancelled()) return;
-        up.classList.add('is-done');
-        upSt.textContent = '올렸어요 · 1.2GB';
-        showPage(2);
-        await sleep(700);
-        cur.show();
-        await sleep(200);
-        cur.to(exBtn);
-        await sleep(1000); if (cancelled()) return;
-        await cur.click();
-        await press(exBtn);
-        ex.classList.add('is-done');
-        setChip(chip, 'ok', '완료');
-        cur.rest();
-        cur.hide();
-        await sleep(3200);
-      }
-    });
-  })();
-
-  // 6. reuse: fill a new conversation from the result's prompt (draft only)
-  (() => {
-    const card = capCard('reuse');
-    if (!card) return;
-    const media = q('.tcard__media', card);
-    const btn = q('[data-fill-btn]', card);
-    const cmp = q('[data-cmp]', card);
-    const txt = q('[data-cmp-text]', card);
-    const note = q('[data-cmp-note]', card);
-    const cur = makeCursor(media);
-    const reset = () => {
-      txt.textContent = '';
-      note.classList.remove('is-on');
-      cmp.classList.remove('is-focus');
-    };
-    if (still) {
-      txt.textContent = cmp.dataset.typed;
-      note.classList.add('is-on');
-      return;
-    }
-    whileVisible(media, async (cancelled) => {
-      while (!cancelled()) {
-        reset();
-        cur.hide();
-        cur.rest();
-        await sleep(1100); if (cancelled()) return;
-        cur.show();
-        await sleep(200);
-        cur.to(btn);
-        await sleep(1000); if (cancelled()) return;
-        await cur.click();
-        await press(btn);
-        cur.rest();
-        cur.hide();
-        cmp.classList.add('is-focus');
-        await typeText(txt, cmp.dataset.typed, cancelled, [26, 52]); if (cancelled()) return;
-        note.classList.add('is-on');
-        await sleep(3400);
-      }
-    });
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+    grid.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', sync);
+    sync();
   })();
   /* ---------- /Capabilities ---------- */
 })();
