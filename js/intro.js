@@ -47,7 +47,14 @@
   /* mascot loop: only play while visible; keep the still for reduced motion */
   const video = document.querySelector('.mx-video');
   if (video) {
-    if (still) { video.remove(); return; }
+    if (still || (navigator.connection && navigator.connection.saveData)) { video.remove(); return; }
+    // warm up the loop shortly before it scrolls into view (the html says preload="none")
+    new IntersectionObserver((entries, io) => {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      video.preload = 'auto';
+      video.load();
+    }, { rootMargin: '900px 0px' }).observe(video);
     const figure = video.closest('.mx-figure');
     video.addEventListener('playing', () => figure.classList.add('has-video'), { once: true });
     new IntersectionObserver(([e]) => {

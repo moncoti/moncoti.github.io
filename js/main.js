@@ -1,3 +1,109 @@
+/* ---------- mobile menu (<=980px): built from the desktop nav so both always match ---------- */
+(() => {
+  const toggle = document.querySelector(".menu-toggle");
+  const center = document.querySelector(".nav-center");
+  if (!toggle || !center) return;
+  const panel = document.createElement("div");
+  panel.className = "m-menu";
+  panel.id = "site-menu";
+  panel.hidden = true;
+  panel.setAttribute("role", "dialog");
+  panel.setAttribute("aria-modal", "true");
+  panel.setAttribute("aria-label", "메뉴");
+  const logo = document.querySelector(".site-nav .logo");
+  const logoCopy = logo ? logo.cloneNode(true) : null;
+  if (logoCopy) { logoCopy.classList.add("m-menu__logo"); logoCopy.setAttribute("tabindex", "-1"); panel.appendChild(logoCopy); }
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "m-menu__close";
+  closeBtn.setAttribute("aria-label", "메뉴 닫기");
+  closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  panel.appendChild(closeBtn);
+  const inner = document.createElement("nav");
+  inner.className = "m-menu__inner";
+  inner.setAttribute("aria-label", "메뉴");
+  center.querySelectorAll(":scope > .nav-item").forEach((item) => {
+    const group = document.createElement("div");
+    group.className = "m-menu__group";
+    const title = document.createElement("p");
+    title.className = "m-menu__title";
+    title.textContent = item.querySelector(".nav-drop-btn").textContent.trim();
+    group.appendChild(title);
+    item.querySelectorAll(".dropdown a").forEach((a) => group.appendChild(a.cloneNode(true)));
+    inner.appendChild(group);
+  });
+  center.querySelectorAll(":scope > a").forEach((a) => { const c = a.cloneNode(true); c.className = "m-menu__solo"; inner.appendChild(c); });
+  const cta = document.createElement("a");
+  cta.className = "m-menu__cta";
+  cta.href = "#cta";
+  cta.textContent = "Download for Windows";
+  inner.appendChild(cta);
+  panel.appendChild(inner);
+  document.body.appendChild(panel);
+
+  // the close button sits exactly where the menu button is, so it reads as the same control turning into an X
+  const place = () => {
+    const t = toggle.getBoundingClientRect();
+    const top = Math.max(10, t.top + (t.height - 44) / 2);
+    closeBtn.style.left = Math.round(t.left + (t.width - 44) / 2) + "px";
+    closeBtn.style.top = Math.round(top) + "px";
+    if (logoCopy && logo) {
+      const l = logo.getBoundingClientRect();
+      logoCopy.style.left = Math.round(l.left) + "px";
+      logoCopy.style.top = Math.round(top + 22 - l.height / 2) + "px";
+    }
+    panel.style.setProperty("--m-top", Math.round(top + 44 + 28) + "px");
+  };
+  const focusables = () => [...panel.querySelectorAll("a[href], button")].filter((el) => el.getAttribute("tabindex") !== "-1" && el.offsetParent !== null);
+  // keyboard opens move focus to the close button; taps focus the panel itself (no focus ring on touch)
+  const open = (byKeyboard) => {
+    place();
+    panel.hidden = false;
+    void panel.offsetWidth;
+    panel.classList.add("is-open");
+    document.documentElement.classList.add("menu-lock");
+    toggle.setAttribute("aria-expanded", "true");
+    (byKeyboard ? closeBtn : panel).focus({ preventScroll: true });
+  };
+  const shut = (restoreFocus) => {
+    if (panel.hidden) return;
+    panel.classList.remove("is-open");
+    document.documentElement.classList.remove("menu-lock");
+    toggle.setAttribute("aria-expanded", "false");
+    setTimeout(() => { if (!panel.classList.contains("is-open")) panel.hidden = true; }, 230);
+    if (restoreFocus) toggle.focus({ preventScroll: true });
+  };
+  panel.tabIndex = -1;
+  toggle.addEventListener("click", (e) => (panel.classList.contains("is-open") ? shut(true) : open(e.detail === 0)));
+  closeBtn.addEventListener("click", () => shut(true));
+  // in-page links: unlock scrolling first, then jump on the next frame (a jump while locked goes nowhere)
+  panel.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (!a) return;
+    shut(false);
+    const href = a.getAttribute("href") || "";
+    if (href.charAt(0) !== "#") return;
+    e.preventDefault();
+    requestAnimationFrame(() => {
+      const target = href.length > 1 ? document.getElementById(href.slice(1)) : null;
+      if (target) target.scrollIntoView({ block: "start" });
+      else window.scrollTo(0, 0);
+      try { history.pushState(null, "", href); } catch (err) { /* previews without a real url */ }
+    });
+  });
+  panel.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") { e.preventDefault(); shut(true); return; }
+    if (e.key !== "Tab") return;
+    const f = focusables();
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  });
+  const wide = matchMedia("(min-width: 981px)");
+  const onWide = (m) => { if (m.matches) shut(false); };
+  if (wide.addEventListener) wide.addEventListener("change", onWide);
+})();
+
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 const easeOut = "cubic-bezier(0.16, 1, 0.3, 1)";
@@ -5,7 +111,7 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const icon = (id, cls = "ico") => `<svg class="${cls}"><use href="#${id}"/></svg>`;
 const teamImg = (key) => (window.__TEAM && window.__TEAM[key]) || "assets/img/team/" + key + ".webp";
-const avatar = (key) => `<img class="av" src="${teamImg(key)}" alt="" />`;
+const avatar = (key) => `<img class="av" src="${teamImg(key)}" alt="" loading="lazy" decoding="async" />`;
 
 /* ---------- hero sequence ---------- */
 const askText = $("#askText");
@@ -262,7 +368,7 @@ const mateRows = $("#mateRows");
 function rowInner(m) {
   const [key, kr, en, role, , line, work] = m;
   return (
-    '<span class="m-av swap"><img src="' + teamImg(key) + '" alt="' + kr + '" /></span>' +
+    '<span class="m-av swap"><img src="' + teamImg(key) + '" alt="' + kr + '" loading="lazy" decoding="async" /></span>' +
     '<div class="m-name swap"><b>' + kr + "</b><span>" + en + " · " + role + "</span></div>" +
     '<p class="m-line swap">“' + line + "”</p>" +
     '<div class="m-work swap">' + work.map((w) => "<span>" + w + "</span>").join("") + "</div>" +
@@ -297,7 +403,7 @@ function renderTeam(key, animate) {
   });
 }
 function selectTeam(key) {
-  $$("[data-team]").forEach((b) => b.classList.toggle("active", b.dataset.team === key));
+  $$("[data-team]").forEach((b) => { const on = b.dataset.team === key; b.classList.toggle("active", on); b.setAttribute("aria-selected", String(on)); });
   renderTeam(key, true);
 }
 renderTeam("plan", false);
