@@ -10,10 +10,16 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png" />
-  <link rel="stylesheet" href="assets/fonts/fonts.css?v=14b8369c" />
-  <link rel="stylesheet" href="css/styles.css?v=212761e7" />
-  <link rel="stylesheet" href="css/intro.css?v=3453d082" />
-  <link rel="stylesheet" href="css/bottom.css?v=8b9105fd" />
+  <!-- perf: preloads -->
+  <link rel="preload" href="assets/img/hero.webp" as="image" fetchpriority="high" />
+  <link rel="preload" href="assets/fonts/sub/newsreader-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/sub/pretendard.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts/fonts.css?v=2d7113bd" />
+  <link rel="stylesheet" href="css/styles.css?v=761b187b" />
+  <style>.mx,.v3b{visibility:hidden}</style>
+  <link rel="stylesheet" href="css/intro.css?v=83eab8f5" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="css/bottom.css?v=b3efdfa4" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="css/intro.css?v=83eab8f5" /><link rel="stylesheet" href="css/bottom.css?v=b3efdfa4" /></noscript>
 </head>
 <body>
 
@@ -81,7 +87,7 @@
       </div>
 
       <button class="nav-download" type="button" data-download>Download</button>
-      <button class="menu-toggle" type="button" aria-label="Menu">
+      <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-menu">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M21 17a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2h18zm0-6a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2h18zm0-6a1 1 0 1 1 0 2H3a1 1 0 0 1 0-2h18z" fill="currentColor"/></svg>
       </button>
     </nav>
@@ -171,7 +177,7 @@
           <div class="bbody">
             <!-- HOME VIEW -->
             <div class="view view-newtab on" id="viewNewtab">
-              <div class="watermark watermark--mark" aria-hidden="true"><img src="assets/img/moncoti-icon-512.webp" alt="" width="56" height="56" /></div>
+              <div class="watermark watermark--mark" aria-hidden="true"><img src="assets/img/moncoti-icon.webp" alt="" width="56" height="56" /></div>
               <div class="askbar">
                 <div class="ask-row">
                   <span class="ask-text" id="askText"></span>
@@ -189,7 +195,7 @@
               </div>
 
               <div class="recent">
-                <h4>오늘 <span>10월 14일 화요일</span></h4>
+                <p class="recent-h">오늘 <span>10월 14일 화요일</span></p>
                 <div class="rt-grid">
                   <article class="rt">
                     <div class="rt-top"><img class="av" src="assets/img/team/luna.webp" alt="" /><span class="rt-meta">루나 · 일하는 중 <span class="work-timer">3m 48s</span></span></div>
@@ -259,6 +265,7 @@
       </button>
     </div>
   </header>
+  <main id="main">
   </div>
 
   <!-- INTRO -->
@@ -278,12 +285,12 @@
     <div class="mx" aria-labelledby="mx-title">
       <div class="mx-top">
         <div class="mx-figure" aria-hidden="true">
-          <img class="mx-media mx-still" src="assets/img/mascot-g-poster.webp" alt="" width="780" height="520">
-          <video class="mx-media mx-video" src="assets/video/mascot.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video>
+          <img loading="lazy" decoding="async" class="mx-media mx-still" src="assets/img/mascot-g-poster.webp" alt="" width="780" height="520">
+          <video class="mx-media mx-video" src="assets/video/mascot.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
         </div>
         <div class="mx-head">
           <p class="mx-sub">
-            <span class="mx-logos"><img src="assets/img/gws/gmail.png" alt=""><img src="assets/img/gws/chat.png" alt=""><img src="assets/img/gws/calendar.png" alt=""><img src="assets/img/gws/drive.png" alt=""></span>
+            <span class="mx-logos"><img loading="lazy" decoding="async" src="assets/img/gws/gmail.png" alt=""><img loading="lazy" decoding="async" src="assets/img/gws/chat.png" alt=""><img loading="lazy" decoding="async" src="assets/img/gws/calendar.png" alt=""><img loading="lazy" decoding="async" src="assets/img/gws/drive.png" alt=""></span>
             Google Workspace 속 매일의 일
           </p>
           <h2 class="mx-title" id="mx-title">AI 동료가 이해하고,<br>끝까지 해내요</h2>
@@ -302,10 +309,10 @@
           <h3>나눠 맡아요</h3>
           <p>정리는 루나, 숫자는 하나, 실행은 코다. 일에 맞는 AI 동료가 맡아요.</p>
           <div class="mx-viz mx-team" aria-hidden="true">
-            <img src="assets/img/team/luna.webp" alt="" style="--i:0">
-            <img src="assets/img/team/hana.webp" alt="" style="--i:1">
-            <img src="assets/img/team/koda.webp" alt="" style="--i:2">
-            <img src="assets/img/team/rena.webp" alt="" style="--i:3">
+            <img loading="lazy" decoding="async" src="assets/img/team/luna.webp" alt="" style="--i:0">
+            <img loading="lazy" decoding="async" src="assets/img/team/hana.webp" alt="" style="--i:1">
+            <img loading="lazy" decoding="async" src="assets/img/team/koda.webp" alt="" style="--i:2">
+            <img loading="lazy" decoding="async" src="assets/img/team/rena.webp" alt="" style="--i:3">
             <span class="mx-team__more" style="--i:4">+16</span>
           </div>
         </article>
@@ -328,13 +335,13 @@
     <div class="icon-orbit" aria-label="MonCoti가 함께 쓰는 서비스와 AI 동료">
       <div class="brand-ico"><svg class="ico"><use href="#i-mail"/></svg><span>Gmail</span></div>
       <div class="brand-ico"><svg class="ico"><use href="#i-chat"/></svg><span>Chat</span></div>
-      <div class="brand-ico mate-ico"><img src="assets/img/team/luna.webp" alt="" /></div>
+      <div class="brand-ico mate-ico"><img loading="lazy" decoding="async" src="assets/img/team/luna.webp" alt="" /></div>
       <div class="brand-ico"><svg class="ico"><use href="#i-cal"/></svg><span>Calendar</span></div>
       <div class="brand-ico"><svg class="ico"><use href="#i-drive"/></svg><span>Drive</span></div>
-      <div class="brand-ico mate-ico"><img src="assets/img/team/hana.webp" alt="" /></div>
+      <div class="brand-ico mate-ico"><img loading="lazy" decoding="async" src="assets/img/team/hana.webp" alt="" /></div>
       <div class="brand-ico"><svg class="ico"><use href="#i-doc"/></svg><span>Docs</span></div>
       <div class="brand-ico"><svg class="ico"><use href="#i-sheet"/></svg><span>Sheets</span></div>
-      <div class="brand-ico mate-ico"><img src="assets/img/team/koda.webp" alt="" /></div>
+      <div class="brand-ico mate-ico"><img loading="lazy" decoding="async" src="assets/img/team/koda.webp" alt="" /></div>
     </div>
     <p class="lead">Gmail, Chat, Calendar, Drive를 원본과 같은 수준으로 읽고 쓰는 업무 공간입니다. 보고 있던 메일 스레드, 일정 하나, 파일 두 개를 그대로 AI에게 넘기고, 무엇을 맥락으로 썼는지는 칩으로 남습니다.</p>
 
@@ -371,7 +378,7 @@
             <div class="cc-pop">
               <b>파트너 킥오프</b>
               <span>10월 21일 (화) 10:00 - 11:00</span>
-              <div class="cc-people"><img src="assets/img/team/rena.webp" alt="" /><i>박</i><i>최</i><i>+2</i></div>
+              <div class="cc-people"><img loading="lazy" decoding="async" src="assets/img/team/rena.webp" alt="" /><i>박</i><i>최</i><i>+2</i></div>
               <div class="cc-actions"><span class="primary">회의 준비</span><span>요약</span></div>
             </div>
           </div>
@@ -400,11 +407,11 @@
       <p class="body">루나에게 정리를, 하나에게 숫자를, 코다에게 실행을. 오른쪽 대화 하나에서 @로 부르면 요청에 맞는 동료가 일을 맡고, 필요하면 더 잘 아는 동료에게 넘깁니다.</p>
       <a class="learn" href="#teammates">AI 동료 스무 명 만나기</a>
       <div class="chart-wrap">
-        <div class="tabs-row" role="tablist">
-          <button class="active" data-team="plan" type="button">기획·성장</button>
-          <button data-team="build" type="button">데이터·개발</button>
-          <button data-team="design" type="button">디자인·콘텐츠</button>
-          <button data-team="ops" type="button">운영·관리</button>
+        <div class="tabs-row" role="tablist" aria-label="동료 팀">
+          <button class="active" data-team="plan" type="button" role="tab" aria-selected="true">기획·성장</button>
+          <button data-team="build" type="button" role="tab" aria-selected="false">데이터·개발</button>
+          <button data-team="design" type="button" role="tab" aria-selected="false">디자인·콘텐츠</button>
+          <button data-team="ops" type="button" role="tab" aria-selected="false">운영·관리</button>
         </div>
         <div id="mateRows" class="mate-rows"></div>
       </div>
@@ -440,7 +447,7 @@
           <div class="mm-foot"><i></i>새 기억 후보 1개 <b>검토하기</b></div>
         </div>
         <div class="mem-card mem-b">
-          <div class="mm-head"><img class="av" src="assets/img/team/luna.webp" alt="" /><b>이 요청에 쓴 맥락</b></div>
+          <div class="mm-head"><img loading="lazy" decoding="async" class="av" src="assets/img/team/luna.webp" alt="" /><b>이 요청에 쓴 맥락</b></div>
           <div class="ctx-chips">
             <span><svg class="ico"><use href="#i-mark"/></svg>화요일 오전 선호</span>
             <span><svg class="ico"><use href="#i-doc"/></svg>9월 파트너 회의록</span>
@@ -477,15 +484,15 @@
             <div class="acc-shade acc-shade--c"></div>
             <div class="acc-shade acc-shade--a"></div>
             <div class="acc-tab" aria-hidden="true">
-              <span class="g-badge"><img src="assets/img/gws/gmail.png" alt=""></span>
+              <span class="g-badge"><img loading="lazy" decoding="async" src="assets/img/gws/gmail.png" alt=""></span>
               <span class="acc-tab__name">Gmail</span>
             </div>
             <div class="acc-body">
               <div class="acc-copy">
-                <span class="g-chip"><img src="assets/img/gws/gmail.png" alt="">Gmail</span>
+                <span class="g-chip"><img loading="lazy" decoding="async" src="assets/img/gws/gmail.png" alt="">Gmail</span>
                 <h3>답장은 초안까지 맡기고,<br>보내기 전에 확인만.</h3>
                 <div class="acc-by">
-                  <img src="assets/img/team/seon.webp" alt="">
+                  <img loading="lazy" decoding="async" src="assets/img/team/seon.webp" alt="">
                   <div><b>세온</b><span>비즈니스 디벨롭먼트</span></div>
                 </div>
                 <p class="acc-quote">“회신 초안 써뒀어요. 보내기 전에 한 번만 봐 주세요.”</p>
@@ -502,7 +509,7 @@
                   </div>
                   <div class="gm__foot">
                     <span class="gm__send"><span>보내기</span><i></i></span>
-                    <span class="gm__tag"><img src="assets/img/team/seon.webp" alt="">세온이 쓴 초안</span>
+                    <span class="gm__tag"><img loading="lazy" decoding="async" src="assets/img/team/seon.webp" alt="">세온이 쓴 초안</span>
                   </div>
                 </div>
               </div>
@@ -515,15 +522,15 @@
             <div class="acc-shade acc-shade--c"></div>
             <div class="acc-shade acc-shade--a"></div>
             <div class="acc-tab" aria-hidden="true">
-              <span class="g-badge"><img src="assets/img/gws/chat.png" alt=""></span>
+              <span class="g-badge"><img loading="lazy" decoding="async" src="assets/img/gws/chat.png" alt=""></span>
               <span class="acc-tab__name">Chat</span>
             </div>
             <div class="acc-body">
               <div class="acc-copy">
-                <span class="g-chip"><img src="assets/img/gws/chat.png" alt="">Google Chat</span>
+                <span class="g-chip"><img loading="lazy" decoding="async" src="assets/img/gws/chat.png" alt="">Google Chat</span>
                 <h3>팀 대화는 Chat 그대로,<br>AI 동료는 바로 옆에.</h3>
                 <div class="acc-by">
-                  <img src="assets/img/team/soy.webp" alt="">
+                  <img loading="lazy" decoding="async" src="assets/img/team/soy.webp" alt="">
                   <div><b>소이</b><span>운영 코디네이터</span></div>
                 </div>
                 <p class="acc-quote">“대화는 그대로 두고, 정리는 제가 옆에서 도울게요.”</p>
@@ -542,7 +549,7 @@
                   <div class="gc__input">캠페인 TF에 메시지 보내기</div>
                 </div>
                 <div class="ai-side">
-                  <div class="ai-side__head"><img src="assets/img/team/soy.webp" alt=""><b>소이</b><span>AI 동료와의 대화</span></div>
+                  <div class="ai-side__head"><img loading="lazy" decoding="async" src="assets/img/team/soy.webp" alt=""><b>소이</b><span>AI 동료와의 대화</span></div>
                   <p class="ai-side__me">리뷰 체크리스트 만들어 줘</p>
                   <p class="ai-side__bot">네, 11시 전에 드릴게요.</p>
                 </div>
@@ -556,15 +563,15 @@
             <div class="acc-shade acc-shade--c"></div>
             <div class="acc-shade acc-shade--a"></div>
             <div class="acc-tab" aria-hidden="true">
-              <span class="g-badge"><img src="assets/img/gws/calendar.png" alt=""></span>
+              <span class="g-badge"><img loading="lazy" decoding="async" src="assets/img/gws/calendar.png" alt=""></span>
               <span class="acc-tab__name">Calendar</span>
             </div>
             <div class="acc-body">
               <div class="acc-copy">
-                <span class="g-chip"><img src="assets/img/gws/calendar.png" alt="">Google Calendar</span>
+                <span class="g-chip"><img loading="lazy" decoding="async" src="assets/img/gws/calendar.png" alt="">Google Calendar</span>
                 <h3>일정 만들고 옮기기,<br>말 한마디면 돼요.</h3>
                 <div class="acc-by">
-                  <img src="assets/img/team/rena.webp" alt="">
+                  <img loading="lazy" decoding="async" src="assets/img/team/rena.webp" alt="">
                   <div><b>레나</b><span>일정·커뮤니케이션 비서</span></div>
                 </div>
                 <p class="acc-quote">“다음 미팅 15분 전에 브리핑 드릴게요.”</p>
@@ -581,7 +588,7 @@
                     </div>
                   </div>
                   <div class="gk__confirm">
-                    <img src="assets/img/team/rena.webp" alt="">
+                    <img loading="lazy" decoding="async" src="assets/img/team/rena.webp" alt="">
                     <p><span class="gk__q">고객사 미팅을 오후 4시로 옮길까요?</span><span class="gk__done">오후 4시로 옮겼어요</span></p>
                     <span class="gk__btns"><span class="gk__btn gk__btn--primary">옮기기</span><span class="gk__btn">취소</span></span>
                   </div>
@@ -596,15 +603,15 @@
             <div class="acc-shade acc-shade--c"></div>
             <div class="acc-shade acc-shade--a"></div>
             <div class="acc-tab" aria-hidden="true">
-              <span class="g-badge"><img src="assets/img/gws/drive.png" alt=""></span>
+              <span class="g-badge"><img loading="lazy" decoding="async" src="assets/img/gws/drive.png" alt=""></span>
               <span class="acc-tab__name">Drive</span>
             </div>
             <div class="acc-body">
               <div class="acc-copy">
-                <span class="g-chip"><img src="assets/img/gws/drive.png" alt="">Google Drive</span>
+                <span class="g-chip"><img loading="lazy" decoding="async" src="assets/img/gws/drive.png" alt="">Google Drive</span>
                 <h3>메일, 일정, 파일까지<br>한 번에 찾아요.</h3>
                 <div class="acc-by">
-                  <img src="assets/img/team/lavi.webp" alt="">
+                  <img loading="lazy" decoding="async" src="assets/img/team/lavi.webp" alt="">
                   <div><b>라비</b><span>콘텐츠·지식 매니저</span></div>
                 </div>
                 <p class="acc-quote">“그 문서, 제가 정리해둔 게 있어요.”</p>
@@ -617,15 +624,15 @@
                   </div>
                   <div class="gd__filters">
                     <span class="is-on"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>전체</span>
-                    <span><img src="assets/img/gws/gmail.png" alt="">Gmail</span>
-                    <span><img src="assets/img/gws/calendar.png" alt="">Calendar</span>
-                    <span><img src="assets/img/gws/drive.png" alt="">Drive</span>
+                    <span><img loading="lazy" decoding="async" src="assets/img/gws/gmail.png" alt="">Gmail</span>
+                    <span><img loading="lazy" decoding="async" src="assets/img/gws/calendar.png" alt="">Calendar</span>
+                    <span><img loading="lazy" decoding="async" src="assets/img/gws/drive.png" alt="">Drive</span>
                   </div>
                   <ul class="gd__list">
-                    <li><img src="assets/img/gws/sheets.png" alt=""><div><b>4분기 견적서</b><span>Drive · 어제 수정</span></div></li>
-                    <li><img src="assets/img/gws/docs.png" alt=""><div><b>견적 미팅 메모</b><span>Drive · 10월 10일</span></div></li>
-                    <li><img src="assets/img/gws/gmail.png" alt=""><div><b>Re: 4분기 견적 일정</b><span>Gmail · 박서연</span></div></li>
-                    <li><img src="assets/img/gws/calendar.png" alt=""><div><b>견적 리뷰 미팅</b><span>Calendar · 목 오후 4:00</span></div></li>
+                    <li><img loading="lazy" decoding="async" src="assets/img/gws/sheets.png" alt=""><div><b>4분기 견적서</b><span>Drive · 어제 수정</span></div></li>
+                    <li><img loading="lazy" decoding="async" src="assets/img/gws/docs.png" alt=""><div><b>견적 미팅 메모</b><span>Drive · 10월 10일</span></div></li>
+                    <li><img loading="lazy" decoding="async" src="assets/img/gws/gmail.png" alt=""><div><b>Re: 4분기 견적 일정</b><span>Gmail · 박서연</span></div></li>
+                    <li><img loading="lazy" decoding="async" src="assets/img/gws/calendar.png" alt=""><div><b>견적 리뷰 미팅</b><span>Calendar · 목 오후 4:00</span></div></li>
                   </ul>
                 </div>
               </div>
@@ -662,7 +669,7 @@
             <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
             <div class="today" data-today aria-hidden="true">
               <div class="today__main">
-                <span class="today__badge"><img src="assets/img/moncoti-icon.webp" alt=""></span>
+                <span class="today__badge"><img loading="lazy" decoding="async" src="assets/img/moncoti-icon.webp" alt=""></span>
                 <div class="today__card">
                   <div class="today__head">
                     <b>Today</b>
@@ -673,12 +680,12 @@
                   <div class="today__list">
                     <div class="t-row" data-row="new">
                       <div class="t-row__in">
-                        <div class="t-item"><img src="assets/img/gws/drive.png" alt=""><div><b>공유 폴더에 4분기 견적서가 올라왔어요</b><span>Drive · 준호 · 방금</span></div></div>
+                        <div class="t-item"><img loading="lazy" decoding="async" src="assets/img/gws/drive.png" alt=""><div><b>공유 폴더에 4분기 견적서가 올라왔어요</b><span>Drive · 준호 · 방금</span></div></div>
                       </div>
                     </div>
                     <div class="t-row" data-row="a">
                       <div class="t-row__in">
-                        <div class="t-item"><img src="assets/img/gws/calendar.png" alt=""><div><b>목요일 고객사 미팅이 오후 4시로 바뀌었어요</b><span>Calendar · 김지훈 · 8분 전</span></div></div>
+                        <div class="t-item"><img loading="lazy" decoding="async" src="assets/img/gws/calendar.png" alt=""><div><b>목요일 고객사 미팅이 오후 4시로 바뀌었어요</b><span>Calendar · 김지훈 · 8분 전</span></div></div>
                         <div class="t-actions">
                           <div class="t-actions__in"><div class="t-actions__pad">
                             <span class="t-btn t-btn--primary" data-t-ack>확인 완료</span>
@@ -690,7 +697,7 @@
                     </div>
                     <div class="t-row" data-row="b">
                       <div class="t-row__in">
-                        <div class="t-item"><img src="assets/img/gws/gmail.png" alt=""><div><b>견적서 회신을 기다리는 메일이 있어요</b><span>Gmail · 박서연 · 12분 전</span></div></div>
+                        <div class="t-item"><img loading="lazy" decoding="async" src="assets/img/gws/gmail.png" alt=""><div><b>견적서 회신을 기다리는 메일이 있어요</b><span>Gmail · 박서연 · 12분 전</span></div></div>
                       </div>
                     </div>
                     <div class="t-row t-row--toast" data-row="toast">
@@ -754,7 +761,7 @@
               <div class="tcard__bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
               <div class="run" data-run data-state="running" aria-hidden="true">
                 <div class="run__head">
-                  <img src="assets/img/team/koda.webp" alt="">
+                  <img loading="lazy" decoding="async" src="assets/img/team/koda.webp" alt="">
                   <div><b>코다</b><span>견적서 표 정리</span></div>
                   <span class="run__state"><i></i><span data-run-state>진행 중</span></span>
                 </div>
@@ -859,7 +866,7 @@
                     <span class="mk-web__dl" data-dl><svg viewBox="0 0 16 16"><path d="M8 3v7M5 7.5l3 3 3-3M3.5 13h9"/></svg>PDF 받기</span>
                   </div>
                   <div class="mk-web__side">
-                    <div class="mk-who"><img src="assets/img/team/luna.webp" alt=""><b>루나</b><span>브라우저 작업</span></div>
+                    <div class="mk-who"><img loading="lazy" decoding="async" src="assets/img/team/luna.webp" alt=""><b>루나</b><span>브라우저 작업</span></div>
                     <div class="mk-step" data-s="ok"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>페이지 열기</span></div>
                     <div class="mk-step" data-s="run" data-step="read"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>단가표 읽기</span><em>3행</em></div>
                     <div class="mk-step" data-s="wait" data-step="get"><span class="mk-si"><svg viewBox="0 0 16 16"><path d="M4.5 8.3l2.3 2.3 4.7-4.9"/></svg></span><span>PDF 받기</span></div>
@@ -907,7 +914,7 @@
                     <p class="pcw__note" data-saved><svg viewBox="0 0 16 16"><path d="M4 8.3l2.5 2.5L12 5.3"/></svg>저장 확인 · 원본은 그대로</p>
                   </div>
                   <div class="pc-ask" data-ask>
-                    <img src="assets/img/moncoti-icon.webp" alt="">
+                    <img loading="lazy" decoding="async" src="assets/img/moncoti-icon.webp" alt="">
                     <div class="pc-ask__t"><b>폴더를 열까요?</b><span>문서 › 보고서 › 10월</span></div>
                     <span class="pc-ask__btn" data-allow>허용</span>
                     <span class="pc-ask__btn pc-ask__btn--ghost">거절</span>
@@ -938,7 +945,7 @@
                 <div class="mk-flow__body">
                   <div class="mk-flow__chips"><span>요청 착수</span><span>사이트 조사</span><span class="on">회의 준비</span><span>자료 수집</span><span>+2</span></div>
                   <div class="mk-flow__sug" data-sug>
-                    <img src="assets/img/team/rena.webp" alt="">
+                    <img loading="lazy" decoding="async" src="assets/img/team/rena.webp" alt="">
                     <div class="mk-flow__sug-t"><b>오후 3:00 파트너 킥오프가 있어요</b><span>레나가 회의 준비를 제안해요</span></div>
                     <span class="mk-btn mk-btn--primary" data-start>회의 준비 시작</span>
                   </div>
@@ -972,14 +979,14 @@
                 </div>
                 <div class="mk-par__lanes">
                   <div class="lane" data-lane="a">
-                    <div class="lane__head"><img src="assets/img/team/luna.webp" alt=""><div><b>루나</b><span>10월 캠페인 성과 정리</span></div></div>
+                    <div class="lane__head"><img loading="lazy" decoding="async" src="assets/img/team/luna.webp" alt=""><div><b>루나</b><span>10월 캠페인 성과 정리</span></div></div>
                     <div class="lane__bar"><i data-fill></i></div>
                     <p class="lane__st" data-st>채널별 수치 모으는 중</p>
                     <div class="lane__lines"><i></i><i></i><i></i></div>
                     <span class="lane__fix" data-fix><svg viewBox="0 0 16 16"><path d="M3 11.5V13h1.5l6.6-6.6-1.5-1.5zM10.6 3.9l1.5 1.5"/></svg>정정 받음 · 다음 단계에 반영</span>
                   </div>
                   <div class="lane" data-lane="b">
-                    <div class="lane__head"><img src="assets/img/team/seon.webp" alt=""><div><b>세온</b><span>파트너 제안 메일 초안</span></div></div>
+                    <div class="lane__head"><img loading="lazy" decoding="async" src="assets/img/team/seon.webp" alt=""><div><b>세온</b><span>파트너 제안 메일 초안</span></div></div>
                     <div class="lane__bar"><i data-fill></i></div>
                     <p class="lane__st" data-st>제안 포인트 정리 중</p>
                     <div class="lane__lines"><i></i><i></i><i></i></div>
@@ -1028,7 +1035,7 @@
     <!-- CTA -->
     <section class="b-cta" id="cta">
       <div class="b-wrap b-cta__inner reveal-up">
-        <img class="b-cta__icon" src="assets/img/moncoti-icon-512.webp" alt="MonCoti 앱 아이콘" width="132" height="132">
+        <img loading="lazy" decoding="async" class="b-cta__icon" src="assets/img/moncoti-icon-264.webp" alt="MonCoti 앱 아이콘" width="132" height="132">
         <span class="eyebrow light"><i class="eyebrow-dash"></i>MonCoti for Windows</span>
         <h2>From thought<br>to progress.</h2>
         <p>생각을 진행으로. 오늘의 일을 MonCoti와 시작하세요.</p>
@@ -1042,6 +1049,7 @@
   </div>
   <!-- ===================== /v3 bottom ===================== -->
 
+  </main>
   <footer class="site-footer">
     <div class="foot-marquee" aria-hidden="true">
       <div class="fm-track">
@@ -1051,11 +1059,11 @@
     </div>
     <div class="footer-grid">
       <div class="foot-brand">
-        <a class="logo light" href="#" aria-label="MonCoti"><img class="logo-mark" src="assets/img/moncoti-icon.webp" alt="" width="36" height="36" /><span>MonCoti</span></a>
+        <a class="logo light" href="#" aria-label="MonCoti"><img loading="lazy" decoding="async" class="logo-mark" src="assets/img/moncoti-icon.webp" alt="" width="36" height="36" /><span>MonCoti</span></a>
         <p>AI workspace<br />for what matters</p>
       </div>
       <div>
-        <h4>Product</h4>
+        <h2 class="foot-h">Product</h2>
         <a href="#workspace">Workspace</a>
         <a href="#gws">Google Workspace</a>
         <a href="#teammates">AI Teammates</a>
@@ -1065,20 +1073,20 @@
         <a href="#capabilities">Capabilities</a>
       </div>
       <div>
-        <h4>Use cases</h4>
+        <h2 class="foot-h">Use cases</h2>
         <a href="#teammates" data-team-link="plan">Marketing</a>
         <a href="#teammates" data-team-link="build">Data &amp; Engineering</a>
         <a href="#teammates" data-team-link="design">Design &amp; Content</a>
         <a href="#teammates" data-team-link="ops">Operations</a>
       </div>
       <div>
-        <h4>Resources</h4>
+        <h2 class="foot-h">Resources</h2>
         <a href="#control">Release notes</a>
         <a href="#privacy">Security</a>
         <a href="#workspace">Docs</a>
       </div>
       <div>
-        <h4>Company</h4>
+        <h2 class="foot-h">Company</h2>
         <a href="#">About</a>
         <a href="#">Careers</a>
         <a href="#cta">Pricing</a>
@@ -1104,8 +1112,8 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=36f028b4"></script>
-  <script src="js/intro.js?v=e2f5168a"></script>
+  <script src="js/main.js?v=d64b3b25"></script>
+  <script src="js/intro.js?v=06779c5e"></script>
   <script src="js/bottom.js?v=7ad6ed0d"></script>
 </body>
 </html>
