@@ -3,16 +3,6 @@
    page and on the panel without a box. Never add transform / filter / opacity / z-index to
    .mx-figure or its ancestors: that would isolate the blend and show a white rectangle. */
 
-/* logo lockup: the character icon + wordmark (nav and footer) */
-.logo{align-items:center;gap:10px}
-.logo-mark{width:32px;height:32px;border-radius:9px;flex:none}
-.foot-brand .logo{display:inline-flex;padding:0}
-.foot-brand .logo-mark{width:36px;height:36px;border-radius:10px}
-@media (max-width:640px){.logo-mark{width:28px;height:28px;border-radius:8px}}
-/* hero demo home screen: character mark instead of the old M| monogram */
-.watermark--mark{opacity:1}
-.watermark--mark img{display:block;width:56px;height:56px;border-radius:15px}
-
 .mx{--mx-w:400px;--mx-ratio:.6667;--mx-edge:.8058;max-width:1168px;margin:104px auto 0;text-align:left}
 .mx-top{display:flex;align-items:flex-end;gap:56px;padding-left:118px}
 .mx-figure{position:relative;flex:none;width:var(--mx-w);margin-bottom:calc(var(--mx-w) * var(--mx-ratio) * (var(--mx-edge) - 1))}
@@ -72,3 +62,5 @@
 @media (prefers-reduced-motion:reduce){
   .mx-team img,.mx-team__more,.mx-chip{opacity:1;transform:none;transition:none}
 }
+/* release the load guard */
+.mx{visibility:visible}

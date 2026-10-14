@@ -2,7 +2,7 @@
    Components from v2: Packify-style accordion (Google Workspace) and TestSprite-style live cards.
    Backgrounds are clean, not paintings. Theme = data-bg on .v3b: neutral | apple | google | aurora
    Every selector is scoped under .v3b at build time so v1's stylesheet and this one never collide. */
-.v3b{--b-ink:#1E1E1E; --b-ink-2:#5E5D58; --b-ink-3:#8D8B85;
+.v3b{--b-ink:#1E1E1E; --b-ink-2:#5E5D58; --b-ink-3:#6E6C66;
   --b-line:rgba(30,30,30,.08); --b-line-2:rgba(205,203,192,.6);
   --b-cobalt:#0057FF; --b-cobalt-ink:#0047D6; --b-cobalt-soft:#EEF3FF;
   --b-ease:cubic-bezier(.2,.7,.2,1);
@@ -650,7 +650,7 @@
 @keyframes cpb-up{0%{transform:translateY(3px);opacity:0}30%,62%{transform:none;opacity:1}100%{transform:translateY(-3px);opacity:0}}
 @keyframes cpb-spin{0%,58%{transform:rotate(0)}84%,100%{transform:rotate(360deg)}}
 .v3b .cpb-nav{display:none}
-.v3b .cpb-nav__btn{display:grid;place-items:center;width:42px;height:36px;padding:0;border:0;border-radius:999px;background:transparent;color:var(--b-ink);cursor:pointer;transition:background-color .2s,opacity .2s}
+.v3b .cpb-nav__btn{display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:999px;background:transparent;color:var(--b-ink);cursor:pointer;transition:background-color .2s,opacity .2s}
 .v3b .cpb-nav__btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .v3b .cpb-nav__btn:disabled{opacity:.28;cursor:default}
 .v3b .cpb-nav__btn:focus-visible{outline:2px solid var(--b-cobalt);outline-offset:1px}
