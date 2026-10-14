@@ -1,0 +1,71 @@
+/* MonCoti v3: mascot leaning on the panel (Soro pattern) in the Introducing section.
+   The mascot media has a white background and uses mix-blend-mode: multiply, so it sits on the
+   page and on the panel without a box. Never add transform / filter / opacity / z-index to
+   .mx-figure or its ancestors: that would isolate the blend and show a white rectangle. */
+
+/* logo lockup: the character icon + wordmark (nav and footer) */
+.logo{align-items:center;gap:10px}
+.logo-mark{width:32px;height:32px;border-radius:9px;flex:none}
+.foot-brand .logo{display:inline-flex;padding:0}
+.foot-brand .logo-mark{width:36px;height:36px;border-radius:10px}
+@media (max-width:640px){.logo-mark{width:28px;height:28px;border-radius:8px}}
+
+.mx{--mx-w:400px;--mx-ratio:.6667;--mx-edge:.8058;max-width:1168px;margin:104px auto 0;text-align:left}
+.mx-top{display:flex;align-items:flex-end;gap:56px;padding-left:118px}
+.mx-figure{position:relative;flex:none;width:var(--mx-w);margin-bottom:calc(var(--mx-w) * var(--mx-ratio) * (var(--mx-edge) - 1))}
+.mx-media{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+/* the loop replaces the still only once it is actually playing (no crossfade: two multiplied layers would darken) */
+.mx-video{position:absolute;inset:0;width:100%;height:100%;visibility:hidden}
+.mx-figure.has-video .mx-video{visibility:visible}
+.mx-figure.has-video .mx-still{visibility:hidden}
+.mx-head{flex:1;min-width:0;padding-bottom:34px}
+.mx-sub{display:flex;align-items:center;gap:12px;font-size:21px;line-height:1.4;color:var(--muted);letter-spacing:-.01em}
+.mx-logos{display:inline-flex;gap:6px}
+.mx-logos img{width:22px;height:22px}
+.mx-title{margin-top:10px;font-family:var(--sans);font-size:46px;font-weight:700;line-height:1.22;letter-spacing:-.035em;color:var(--fg);word-break:keep-all}
+
+.mx-panel{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;padding:48px 48px 44px;border-radius:24px;background:#F0EFEC}
+.mx-col h3{font-size:21px;font-weight:650;line-height:1.35;letter-spacing:-.02em;color:var(--fg)}
+.mx-col p{margin-top:12px;font-size:17px;line-height:1.65;color:var(--muted);word-break:keep-all;text-wrap:pretty}
+.mx-viz{height:112px;margin-top:22px;display:flex;align-items:center}
+
+/* gauge (Today) */
+.mx-gauge{position:relative;width:112px}
+.mx-gauge svg{display:block}
+.mx-gauge path{fill:none;stroke-width:13;stroke:#E0DED8;transition:stroke .35s ease}
+.mx-gauge path.is-on{stroke:var(--cobalt)}
+.mx-gauge__num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:4px}
+.mx-gauge__num b{font-size:30px;font-weight:600;line-height:1;color:var(--fg);font-variant-numeric:tabular-nums}
+.mx-gauge__num span{margin-top:4px;font-size:11px;font-weight:600;color:var(--fg-70)}
+
+/* team avatars (Personas) */
+.mx-team{gap:0}
+.mx-team img,.mx-team__more{width:52px;height:52px;border-radius:50%;margin-left:-12px;box-shadow:0 0 0 3px #F0EFEC;opacity:0;transform:translateY(10px) scale(.9);transition:opacity .45s var(--ease-out),transform .55s var(--ease-out);transition-delay:calc(var(--i) * 90ms)}
+.mx-team img{object-fit:cover;background:#fff}
+.mx-team img:first-child{margin-left:0}
+.mx-team__more{display:grid;place-items:center;background:#1E1E1E;color:#fff;font-family:var(--brand);font-size:14px;font-weight:600}
+.mx-panel.is-on .mx-team img,.mx-panel.is-on .mx-team__more{opacity:1;transform:none}
+
+/* memory chips */
+.mx-mem{flex-direction:column;align-items:flex-start;justify-content:center;gap:8px}
+.mx-chip{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px 0 10px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05);font-size:14px;font-weight:550;color:var(--fg);opacity:0;transform:translateX(-10px);transition:opacity .45s var(--ease-out),transform .55s var(--ease-out);transition-delay:calc(240ms + var(--i) * 160ms)}
+.mx-chip i{width:20px;height:20px;border-radius:50%;flex:none;background:#EEF3FF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.2 4.2L19 7' fill='none' stroke='%230057FF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+.mx-panel.is-on .mx-chip{opacity:1;transform:none}
+
+@media (max-width:1100px){
+  .mx{--mx-w:340px;margin-left:24px;margin-right:24px}
+  .mx-top{padding-left:56px;gap:36px}
+  .mx-title{font-size:38px}
+  .mx-panel{gap:32px;padding:40px 36px 36px}
+}
+@media (max-width:820px){
+  .mx{--mx-w:300px;margin:80px 16px 0}
+  .mx-top{flex-direction:column-reverse;align-items:flex-start;gap:20px;padding-left:20px}
+  .mx-head{padding-bottom:0}
+  .mx-sub{font-size:17px;flex-wrap:wrap}
+  .mx-title{font-size:32px}
+  .mx-panel{grid-template-columns:1fr;gap:34px;padding:44px 26px 32px}
+}
+@media (prefers-reduced-motion:reduce){
+  .mx-team img,.mx-team__more,.mx-chip{opacity:1;transform:none;transition:none}
+}
