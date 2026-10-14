@@ -1043,14 +1043,14 @@ button, a, .feat, .cap-card, .dropdown, .chip, .mate-row {
 .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto 64px; }
 .foot-brand .logo { font-size: 30px; }
 .foot-brand p { margin-top: 14px; font-family: var(--brand); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); line-height: 2; }
-.footer-grid h4, .footer-grid .foot-h { font-family: var(--brand); font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); margin-bottom: 14px; }
+.footer-grid h4, .footer-grid .foot-h { font-family: var(--brand); font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255, 255, 255, 0.58); margin-bottom: 14px; }
 .footer-grid a { display: block; font-size: 14px; color: rgba(255, 255, 255, 0.86); padding: 5px 0; }
 .footer-grid a:hover { color: #fff; transform: translateX(2px); }
 .footer-bottom {
   max-width: 1200px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
   padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.45); font-size: 13px;
+  color: rgba(255, 255, 255, 0.58); font-size: 13px;
 }
 .foot-serif { font-family: var(--serif); font-style: italic; font-size: 15px; color: rgba(255, 255, 255, 0.6); }
 .socials { display: flex; gap: 14px; align-items: center; }
