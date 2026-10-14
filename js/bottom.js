@@ -84,6 +84,9 @@
     };
     sizeAcc();
     addEventListener('resize', sizeAcc);
+    // bottom.css loads without blocking, so the row can still change size after this runs: re-measure when it does
+    if ('ResizeObserver' in window) new ResizeObserver(() => sizeAcc()).observe(acc);
+    addEventListener('load', sizeAcc);
 
     const typeDrive = (item) => {
       const field = q('.gd__q', item);
