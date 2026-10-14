@@ -97,9 +97,11 @@
       sleep(650).then(() => typeText(field, field.dataset.typed, () => t !== typeToken || !item.classList.contains('is-active')));
     };
 
+    let switchedAt = 0;
     const setActive = (i) => {
       if (i === active || i < 0) return;
       active = i;
+      switchedAt = performance.now();
       items.forEach((it, k) => {
         it.classList.toggle('is-active', k === i);
         q('.acc-hit', it).setAttribute('aria-expanded', String(k === i));
@@ -111,16 +113,38 @@
       typeDrive(items[i]);
     };
 
-    // hover follows real pointer movement only, so cards sliding under a resting cursor do not chain-activate
+    // hover follows real pointer movement only, so cards sliding under a resting cursor do not chain-activate.
+    // Hover intent: a card opens only after the pointer rests on it for a moment, and not while the row is still
+    // resizing from the last switch, so sweeping the mouse across the row does not flip cards one after another.
+    const HOVER_WAIT = 300;
+    const SETTLE = 800;
     let lx = -1;
     let ly = -1;
+    let hoverIdx = -1;
+    let hoverTimer = 0;
+    const underPointer = () => {
+      const el = document.elementFromPoint(lx, ly);
+      const it = el && el.closest('.acc-item');
+      return it ? items.indexOf(it) : -1;
+    };
     acc.addEventListener('mousemove', (e) => {
       if (!canHover.matches || (e.clientX === lx && e.clientY === ly)) return;
       lx = e.clientX;
       ly = e.clientY;
       const it = e.target.closest('.acc-item');
-      if (it) setActive(items.indexOf(it));
+      const idx = it ? items.indexOf(it) : -1;
+      if (idx === hoverIdx) return;
+      hoverIdx = idx;
+      clearTimeout(hoverTimer);
+      if (idx < 0 || idx === active) return;
+      const wait = Math.max(HOVER_WAIT, SETTLE - (performance.now() - switchedAt));
+      hoverTimer = setTimeout(() => {
+        if (hoverIdx !== idx) return;
+        if (underPointer() === idx) setActive(idx);
+        else hoverIdx = -1; // the row moved under the pointer: decide again on the next real movement
+      }, wait);
     });
+    acc.addEventListener('mouseleave', () => { clearTimeout(hoverTimer); hoverIdx = -1; });
 
     items.forEach((it, i) => {
       const hit = q('.acc-hit', it);
