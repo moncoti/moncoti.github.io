@@ -48,8 +48,8 @@
   if (/[?&]mx=2(?:&|$)/.test(location.search)) {
     const mxStill = document.querySelector('.mx-still');
     const mxVideo = document.querySelector('.mx-video');
-    if (mxStill) mxStill.src = 'assets/img/mascot-magic-poster.webp?v=831129c2';
-    if (mxVideo) mxVideo.src = 'assets/video/mascot-magic.mp4?v=2f4dea00';
+    if (mxStill) mxStill.src = 'assets/img/mascot-magic-poster.webp?v=7498cb37';
+    if (mxVideo) mxVideo.src = 'assets/video/mascot-magic.mp4?v=0f08df72';
   }
   /* /preview */
   /* mascot loop: only play while visible; keep the still for reduced motion */
