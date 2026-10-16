@@ -44,6 +44,14 @@
     });
   }, { threshold: 0.35 }).observe(panel);
 
+  /* preview: ?mx=2 shows the magic mascot (pull-out loop) instead of the wave; the default stays the wave */
+  if (/[?&]mx=2(?:&|$)/.test(location.search)) {
+    const mxStill = document.querySelector('.mx-still');
+    const mxVideo = document.querySelector('.mx-video');
+    if (mxStill) mxStill.src = 'assets/img/mascot-magic-poster.webp?v=831129c2';
+    if (mxVideo) mxVideo.src = 'assets/video/mascot-magic.mp4?v=2f4dea00';
+  }
+  /* /preview */
   /* mascot loop: only play while visible; keep the still for reduced motion */
   const video = document.querySelector('.mx-video');
   if (video) {
