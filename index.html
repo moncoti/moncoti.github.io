@@ -14,8 +14,8 @@
   <link rel="preload" href="assets/img/hero.webp" as="image" fetchpriority="high" />
   <link rel="preload" href="assets/fonts/sub/newsreader-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/sub/pretendard.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/fonts/fonts.css?v=514bc5a8" />
-  <link rel="stylesheet" href="css/styles.css?v=9e3faa66" />
+  <link rel="stylesheet" href="assets/fonts/fonts.css?v=38b61d9d" />
+  <link rel="stylesheet" href="css/styles.css?v=ba8b5a81" />
   <style>.mx,.v3b{visibility:hidden}</style>
   <link rel="stylesheet" href="css/intro.css?v=83eab8f5" media="print" onload="this.media='all'" />
   <link rel="stylesheet" href="css/bottom.css?v=60edb270" media="print" onload="this.media='all'" />
@@ -345,59 +345,80 @@
     </div>
     <p class="lead">Gmail, Chat, Calendar, Drive를 원본과 같은 수준으로 읽고 쓰는 업무 공간입니다. 보고 있던 메일 스레드, 일정 하나, 파일 두 개를 그대로 AI에게 넘기고, 무엇을 맥락으로 썼는지는 칩으로 남습니다.</p>
 
-    <div class="cards-3">
-      <article class="cap-card reveal-up">
-        <div class="cap-visual">
-          <div class="mail-card">
-            <div class="mc-head">
-              <b>Re: 10월 캠페인 결과 공유</b>
-              <span>박서준 · 오전 9:12</span>
+    <div class="cards-3 pts">
+      <article class="cap-card pt-card reveal-up" data-pt="run">
+        <div class="cap-visual pt-visual" aria-hidden="true">
+          <div class="run-ask"><span>이번 달 캠페인 성과 정리해서 팀장님께 공유해줘</span></div>
+          <div class="run-card">
+            <div class="run-head">
+              <img loading="lazy" decoding="async" class="run-av" src="assets/img/team/luna.webp" alt="" width="22" height="22" />
+              <b>루나</b>
+              <span class="run-state" data-run-state>진행 중</span>
+              <span class="run-count"><i data-run-n>0</i>/5</span>
             </div>
-            <div class="mc-lines"><i style="width:92%"></i><i style="width:78%"></i><i style="width:85%"></i><i style="width:48%"></i></div>
-            <div class="mc-bar">
-              <span class="mc-btn">답장</span><span class="mc-btn">보관</span>
-              <span class="ask-ai">AI에게 <svg class="chev sm" viewBox="0 0 24 24"><use href="#i-chev"/></svg></span>
-            </div>
-            <div class="ask-menu">
-              <span><svg class="ico"><use href="#i-doc"/></svg>요약</span>
-              <span class="on"><svg class="ico"><use href="#i-mail"/></svg>답장 초안</span>
-              <span><svg class="ico"><use href="#i-check"/></svg>후속 할 일</span>
-            </div>
+            <div class="run-bar"><i data-run-bar></i></div>
+            <ol class="run-steps">
+              <li data-step><span class="run-st"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4L18 8"/></svg></span><span class="run-tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 7h10M10 12h10M10 17h10"/><path d="M4 7h1.5M4 12h1.5M4 17h1.5"/></svg></span><span class="run-lb">할 일 계획 세우기</span><em>5단계</em></li>
+              <li data-step><span class="run-st"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4L18 8"/></svg></span><span class="run-tool"><img loading="lazy" decoding="async" src="assets/img/gws/gmail.png" alt="" width="14" height="14" /></span><span class="run-lb">캠페인 메일 6통 읽기</span><em>Gmail</em></li>
+              <li data-step><span class="run-st"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4L18 8"/></svg></span><span class="run-tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.9 5.2 3.9 8.5s-1.3 6.1-3.9 8.5c-2.6-2.4-3.9-5.2-3.9-8.5s1.3-6.1 3.9-8.5z"/></svg></span><span class="run-lb">광고 대시보드 수치 가져오기</span><em>브라우저</em></li>
+              <li data-step><span class="run-st"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4L18 8"/></svg></span><span class="run-tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="4.5" width="17" height="11.5" rx="2"/><path d="M9 20h6M12 16v4"/></svg></span><span class="run-lb">성과 표 만들어 저장</span><em>PC</em></li>
+              <li data-step><span class="run-st"><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4L18 8"/></svg></span><span class="run-tool"><svg class="ico"><use href="#i-search"/></svg></span><span class="run-lb">숫자 검토 · 후속 메일 초안</span><em class="run-wait">확인 대기</em></li>
+            </ol>
           </div>
         </div>
-        <h3>읽던 메일에서 바로</h3>
-        <p>요약, 답장 초안, 후속 할 일을 메일에서 바로 부탁하세요. 초안은 보내지 않고 대화창에 채워 둡니다.</p>
+        <span class="pt-num">01</span>
+        <h3>요청 한 번으로, 업무를 끝까지</h3>
+        <p>AI가 필요한 작업을 계획하고 실행하며, 결과 검토와 후속 처리까지 이어갑니다. Google Workspace부터 브라우저·PC까지 연결해 여러 도구에 흩어진 업무를 하나의 흐름으로 처리합니다.</p>
       </article>
-      <article class="cap-card reveal-up">
-        <div class="cap-visual">
-          <div class="cal-card">
-            <div class="cc-grid">
-              <span class="t">09</span><span class="t">10</span><span class="t">11</span><span class="t">12</span>
-              <span class="ev">파트너 킥오프</span>
+      <article class="cap-card pt-card reveal-up" data-pt="know">
+        <div class="cap-visual pt-visual" aria-hidden="true">
+          <div class="kh-src">
+            <span class="kh-av">박</span>
+            <p>할인 쿠폰은 <mark data-kh-mark>10%까지만, 넘으면 팀장님 확인</mark> 받고 진행해요</p>
+            <span class="kh-found" data-kh-found><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>판단 기준 발견</span>
+          </div>
+          <div class="kh-book">
+            <div class="kh-head">
+              <span class="kh-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M5 4.5h10.5a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h10.5"/></svg></span>
+              <b>프로모션 운영 노하우</b>
+              <span class="kh-badge" data-kh-badge>팀 공유</span>
             </div>
-            <div class="cc-pop">
-              <b>파트너 킥오프</b>
-              <span>10월 21일 (화) 10:00 - 11:00</span>
-              <div class="cc-people"><img loading="lazy" decoding="async" src="assets/img/team/rena.webp" alt="" /><i>박</i><i>최</i><i>+2</i></div>
-              <div class="cc-actions"><span class="primary">회의 준비</span><span>요약</span></div>
+            <ul class="kh-rows">
+              <li data-kh-row><em>판단 기준</em><span>할인 10% 초과 시 팀장 확인</span></li>
+              <li data-kh-row><em>해결 방식</em><span>재고 부족 땐 대체 상품 먼저 제안</span></li>
+              <li data-kh-row><em>업무 절차</em><span>기획 → 승인 → 배너 → 공지</span></li>
+            </ul>
+            <div class="kh-foot" data-kh-foot>
+              <span class="kh-team"><img loading="lazy" decoding="async" src="assets/img/team/rena.webp" alt="" width="20" height="20" /><img loading="lazy" decoding="async" src="assets/img/team/doyun.webp" alt="" width="20" height="20" /><img loading="lazy" decoding="async" src="assets/img/team/soy.webp" alt="" width="20" height="20" /><i>+5</i></span>
+              <span>마케팅팀이 함께 써요</span>
             </div>
           </div>
         </div>
-        <h3>회의 준비를 맡기기</h3>
-        <p>일정 하나를 고르면 관련 메일과 지난 회의록을 모아 안건 초안을 준비합니다.</p>
+        <span class="pt-num">02</span>
+        <h3>개인의 노하우를, 조직의 자산으로</h3>
+        <p>업무 속에 숨어 있는 판단 기준과 문제 해결 방식, 노하우를 발견하고 기록합니다. 개인에게만 머물던 경험을 조직이 함께 활용할 수 있는 지식과 업무 절차로 축적합니다.</p>
       </article>
-      <article class="cap-card reveal-up">
-        <div class="cap-visual">
-          <div class="drive-card">
-            <div class="dc-row"><i class="cb"></i><svg class="ico"><use href="#i-doc"/></svg><span>제안서_v3</span><em>어제</em></div>
-            <div class="dc-row sel"><i class="cb on"></i><svg class="ico"><use href="#i-sheet"/></svg><span>Q3 성과 리포트</span><em>9월 30일</em></div>
-            <div class="dc-row sel"><i class="cb on"></i><svg class="ico"><use href="#i-sheet"/></svg><span>Q4 성과 리포트</span><em>오늘</em></div>
-            <div class="dc-row"><i class="cb"></i><svg class="ico"><use href="#i-folder"/></svg><span>파트너십 자료</span><em>10월 2일</em></div>
-            <div class="dc-bulk"><b>2개 선택</b><span>요약</span><span class="primary">비교</span><span>대화에 첨부</span></div>
+      <article class="cap-card pt-card reveal-up" data-pt="learn">
+        <div class="cap-visual pt-visual" aria-hidden="true">
+          <div class="ln-doc">
+            <div class="ln-head"><img loading="lazy" decoding="async" src="assets/img/gws/docs.png" alt="" width="14" height="14" /><b>주간 성과 리포트</b><span>초안</span></div>
+            <p class="ln-line">매출이 <s data-ln-old>전월</s><ins data-ln-new>전년 동월</ins> 대비 12% 늘었어요</p>
+            <div class="ln-fix" data-ln-fix><span class="kh-av sm">나</span>비교 기준은 전년 동월로</div>
+          </div>
+          <div class="ln-saved" data-ln-saved><svg viewBox="0 0 24 24"><path d="M6 12.5l4 4L18 8"/></svg>노하우로 저장 · 다음 리포트부터 반영</div>
+          <div class="ln-chart">
+            <div class="ln-chart-h"><b>같은 수정 요청</b><span data-ln-zero>반복 0회</span></div>
+            <div class="ln-bars">
+              <span data-ln-bar style="--h:.9"><i></i><em>1주</em></span>
+              <span data-ln-bar style="--h:.55"><i></i><em>2주</em></span>
+              <span data-ln-bar style="--h:.22"><i></i><em>3주</em></span>
+              <span data-ln-bar style="--h:.05"><i></i><em>4주</em></span>
+            </div>
           </div>
         </div>
-        <h3>파일 두 개를 나란히</h3>
-        <p>두 파일을 고르고 비교를 맡기세요. 어떤 버전을 읽었는지가 결과와 함께 남습니다.</p>
+        <span class="pt-num">03</span>
+        <h3>일할수록, 더 똑똑해지는 AI</h3>
+        <p>업무 결과와 사용자의 수정·피드백을 통해 검증된 노하우를 축적합니다. 이를 다음 업무에 반영해 반복되는 실수를 줄이고, 더 정확하고 효율적인 업무 방식으로 발전합니다.</p>
       </article>
     </div>
 
@@ -1169,7 +1190,7 @@
   </footer>
 
   <script src="js/main.js?v=a4fd11ae"></script>
-  <script src="js/intro.js?v=06779c5e"></script>
+  <script src="js/intro.js?v=53ba792f"></script>
   <script src="js/bottom.js?v=6f3b711e"></script>
 </body>
 </html>
